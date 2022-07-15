@@ -57,3 +57,10 @@ Please follow this link in order to view the project workflow process  [Project 
 ## Domain Modeling
 
 ![Domain Modeling](./assets/Domain.png)
+
+<br>
+<hr>
+
+## Wireframes
+
+![Wireframes](./assets/Wireframes.jpg)
