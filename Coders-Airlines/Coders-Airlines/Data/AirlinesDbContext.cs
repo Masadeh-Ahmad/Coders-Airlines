@@ -13,7 +13,15 @@ namespace Coders_Airlines.Data
     public class AirlinesDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Car> Cars { get; set; }
+        public DbSet<Apartment> Apartments { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<CarRental> CarRentals { get; set; }
+        public DbSet<ApartmentRental> ApartmentRentals { get; set; }
         public DbSet<Flight> Flights { get; set; }
+        public DbSet<FlightImg> FlightImgs { get; set; }
+        public DbSet<CarImg> CarImgs { get; set; }
+        public DbSet<ApartmentImg> ApartmentImgs { get; set; }
+
         public AirlinesDbContext(DbContextOptions options) : base(options)
         { 
         }
@@ -54,6 +62,13 @@ namespace Coders_Airlines.Data
             ).ToArray();
 
             modelBuilder.Entity<IdentityRoleClaim<string>>().HasData(RoleClaims);
+
+            modelBuilder.Entity<ApartmentRental>().HasKey(x => new { x.ApartmentID, x.UserId });
+            modelBuilder.Entity<CarRental>().HasKey(x => new { x.CarID, x.UserId });
+            modelBuilder.Entity<Booking>().HasKey(x => new { x.FlightID, x.UserId });
+
+
+
         }
     }
 }
