@@ -1,0 +1,41 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Coders_Airlines.Pages.Auth.SignUpModel
+@{
+}
+@*<link rel="stylesheet" href=~/Pages/Auth/SignUp.cshtml.css />
+*@
+    <section>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class ="box">
+            <div class="square"Style="--i:0;"></div>
+            <div class="square"Style="--i:1;"></div>
+            <div class="square"Style="--i:2;"></div>
+            <div class="square"Style="--i:3;"></div>
+            <div class="square"Style="--i:4;"></div>
+
+            <div class="container">
+                <div class="form">
+                    <form method="post">
+                    <h2>Sign Up</h2>
+                    <div class="inputbox">
+                        <input name="UserName" type="text" placeholder="User Name" required>
+                    </div>
+                    <div class="inputbox">
+                        <input name="Email" type="email" placeholder="Email" required>
+                    </div>
+                    <div class="inputbox">
+                        <input name="Password" type="password" placeholder="password" required>
+                    </div>
+                    <div asp-validation-summary="All"></div>
+                    <div class="inputbox">
+                        <input type="submit" value="Sign Up">
+                    </div>
+                        <p class="forget">Already have an Account ? <a asp-page="LogIn" > Log In</a></p>
+                    </form>
+                </div>            
+            </div>
+        </div>
+    </section>
