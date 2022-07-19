@@ -1,0 +1,37 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Coders_Airlines.Pages.Apartments.ApartmentsModel
+@{
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="vh-100">
+    <div>
+        <h2 style="text-align:center">Apartments</h2>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach (var apartment in @Model.Apartments)
+            {
+                <div class="col-sm-6 col-lg-4 col-lg-2" style="padding : 5px ">
+                  <div class="card text-black">
+                    <img src="@apartment.Thumbnail"
+                      class="card-img-top" alt="..." />
+                    <div class="card-body">
+                      <div class="text-center">
+                        <h5 class="card-title">@apartment.City</h5>
+                        <p class="text-muted mb-4">@apartment.Description</p>
+                        <p class="text-muted mb-4">Is Available: @apartment.IsAvailable</p>
+                      </div>
+                      <div class="d-flex justify-content-center font-weight-bold mt-4">
+                        <a asp-page="/" asp-route-id="@apartment.ID">Rent</a>
+                      </div>
+                      <div class="d-flex justify-content-center font-weight-bold mt-4">
+                        <a asp-page="/Apartments/ApartmentDetails" asp-route-id="@apartment.ID">Details</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

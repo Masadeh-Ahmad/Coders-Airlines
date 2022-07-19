@@ -29,10 +29,11 @@ namespace Coders_Airlines.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Category>().HasData
-            //   (
-
-            //    );
+            modelBuilder.Entity<Apartment>().HasData(
+                new Apartment { ID = 1, City = "Amman", Description = "Three bedrooms and two pathrooms with full view of Apdalli Towers in the middle of Amman", IsAvailable = true, RentalCost = 500 },
+                new Apartment { ID = 2, City = "Amman", Description = "Two master bedrooms and two teraes in the DownTowm of Amman", IsAvailable = true, RentalCost = 700 },
+                new Apartment { ID = 3, City = "Paris", Description = "Four bedrooms, two of them are masters and two indivisual pathrooms with full view of Evil Tower in the middle of Paris", IsAvailable = true, RentalCost = 1500 }
+                );
 
             SeedRoles(modelBuilder, "administrator", "create", "delete");
             SeedRoles(modelBuilder, "user", "create");
