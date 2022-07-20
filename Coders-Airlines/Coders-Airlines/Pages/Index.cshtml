@@ -1,4 +1,17 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Coders_Airlines.Pages.IndexModel
 @{
 }
+
+
+<h1>Hello User</h1>
+
+<h3>Start booking!!</h3>
+
+<a asp-page="/Cars/Index">Cars</a>
+<a asp-page="/Apartments/Index">Apartments</a>
+<a asp-page="/Flights/Index">Flights</a>
+
+
+<a asp-page="/Auth/Login">Login</a>
