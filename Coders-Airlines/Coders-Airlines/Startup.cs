@@ -43,7 +43,7 @@ namespace Coders_Airlines
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 // Needs fixing.
-                options.Conventions.AddPageRoute("/Categories/Categories", "");
+                options.Conventions.AddPageRoute("/Index/Index", "");
             });
             services.AddDbContext<AirlinesDbContext>(options =>
             {
