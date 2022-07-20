@@ -24,7 +24,6 @@ namespace Coders_Airlines.Pages.Auth
         }
         public async Task<IActionResult> OnPostAsync()
         {
-
             LoginDTO person = new LoginDTO()
             {
                 UserName = input.UserName,
