@@ -67,7 +67,7 @@ namespace Coders_Airlines.Auth
                 Roles.Add("user");
 
                 await _userManager.AddToRolesAsync(user, Roles);
-                await _email.WelcomeMail(registerDto.Email);
+                //await _email.WelcomeMail(registerDto.Email);
                 return new UserDTO
                 {
                     Username = user.UserName,
