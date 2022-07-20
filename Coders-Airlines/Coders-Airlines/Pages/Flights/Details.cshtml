@@ -1,0 +1,55 @@
+﻿@page
+@model Coders_Airlines.Pages.Flights.DetailsModel
+
+<div>
+    <h4>Flight</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Flight.From)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.From)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Flight.To)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.To)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Flight.DepartureDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.DepartureDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Flight.ArrivalDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.ArrivalDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Flight.NumOfBags)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.NumOfBags)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Flight.ClassType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.ClassType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Flight.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Flight.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

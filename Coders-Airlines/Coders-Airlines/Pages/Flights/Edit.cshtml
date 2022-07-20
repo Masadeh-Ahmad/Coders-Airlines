@@ -1,0 +1,59 @@
+﻿@page
+@model Coders_Airlines.Pages.Flights.EditModel
+
+<h4>Flight</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Flight.ID" />
+            <div class="form-group">
+                <label asp-for="Flight.From" class="control-label"></label>
+                <input asp-for="Flight.From" class="form-control" />
+                <span asp-validation-for="Flight.From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.To" class="control-label"></label>
+                <input asp-for="Flight.To" class="form-control" />
+                <span asp-validation-for="Flight.To" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.DepartureDate" class="control-label"></label>
+                <input asp-for="Flight.DepartureDate" class="form-control" />
+                <span asp-validation-for="Flight.DepartureDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.ArrivalDate" class="control-label"></label>
+                <input asp-for="Flight.ArrivalDate" class="form-control" />
+                <span asp-validation-for="Flight.ArrivalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.NumOfBags" class="control-label"></label>
+                <select asp-for="Flight.NumOfBags" class="form-control"></select>
+                <span asp-validation-for="Flight.NumOfBags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.ClassType" class="control-label"></label>
+                <select asp-for="Flight.ClassType" class="form-control"></select>
+                <span asp-validation-for="Flight.ClassType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Flight.Price" class="control-label"></label>
+                <input asp-for="Flight.Price" class="form-control" />
+                <span asp-validation-for="Flight.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
