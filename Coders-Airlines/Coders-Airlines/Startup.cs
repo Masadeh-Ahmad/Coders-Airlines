@@ -55,6 +55,7 @@ namespace Coders_Airlines
             services.AddTransient<IEmail, EmailService>();
 
             // Map the interface with the service
+            services.AddTransient<IApartment, ApartmentService>();
             services.AddTransient<IUser, UserService>();
 
             // failed trials - accessing paths
