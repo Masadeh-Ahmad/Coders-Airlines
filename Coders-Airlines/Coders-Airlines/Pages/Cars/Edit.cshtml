@@ -34,12 +34,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="Car.Type" class="control-label"></label>
-                <select asp-for="Car.Type" class="form-control"></select>
+                <select asp-for="Car.Type" class="form-control">
+                    <option value="0">CompactSedan</option>
+                    <option value="1">Sedan</option>
+                    <option value="2">Hatchback</option>
+                    <option value="3">SUV</option>
+                </select>
                 <span asp-validation-for="Car.Type" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Car.FuelType" class="control-label"></label>
-                <select asp-for="Car.FuelType" class="form-control"></select>
+                <select asp-for="Car.FuelType" class="form-control">
+                    <option value="0">Gasoline</option>
+                    <option value="1">Hybrid</option>
+                    <option value="2">Electric</option>
+                </select>
                 <span asp-validation-for="Car.FuelType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -56,11 +65,6 @@
                 <label asp-for="Car.Description" class="control-label"></label>
                 <input asp-for="Car.Description" class="form-control" />
                 <span asp-validation-for="Car.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Car.IsAvailable" /> @Html.DisplayNameFor(model => model.Car.IsAvailable)
-                </label>
             </div>
             <div class="form-group">
                 <label asp-for="Car.Thumbnail" class="control-label"></label>

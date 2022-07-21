@@ -13,7 +13,6 @@ namespace Coders_Airlines.Models
         public DateTime From { get; set; }
         public DateTime To { get; set; }
         public double TotalPrice { get; set; }
-
         public Flight Flight { get; set; }
         public ApplicationUser User { get; set; }
     }
