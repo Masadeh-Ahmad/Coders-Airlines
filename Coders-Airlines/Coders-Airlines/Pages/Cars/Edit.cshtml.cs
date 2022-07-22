@@ -8,16 +8,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Cars
 {
     public class EditModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly ICar _car;
 
-        public EditModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public EditModel(ICar car)
         {
-            _context = context;
+            _car = car;
         }
 
         [BindProperty]
@@ -30,7 +31,7 @@ namespace Coders_Airlines.Pages.Cars
                 return NotFound();
             }
 
-            Car = await _context.Cars.FirstOrDefaultAsync(m => m.ID == id);
+            Car = await _car.GetCar(id);
 
             if (Car == null)
             {
@@ -47,31 +48,9 @@ namespace Coders_Airlines.Pages.Cars
             {
                 return Page();
             }
-
-            _context.Attach(Car).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CarExists(Car.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _car.UpdateCar(Car.ID, Car);
 
             return RedirectToPage("./Index");
-        }
-
-        private bool CarExists(int id)
-        {
-            return _context.Cars.Any(e => e.ID == id);
         }
     }
 }

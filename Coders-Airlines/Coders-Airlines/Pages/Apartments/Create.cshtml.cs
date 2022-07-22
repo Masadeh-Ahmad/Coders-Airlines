@@ -13,11 +13,11 @@ namespace Coders_Airlines.Pages.Apartments
 {
     public class CreateModel : PageModel
     {
-        private readonly IApartment apartmentService;
+        private readonly IApartment _apartment;
 
-        public CreateModel(IApartment service)
+        public CreateModel(IApartment apartment)
         {
-            apartmentService = service;
+            _apartment = apartment;
         }
 
         public IActionResult OnGet()
@@ -36,7 +36,7 @@ namespace Coders_Airlines.Pages.Apartments
                 return Page();
             }
 
-            await apartmentService.CreateApartment(Apartment);
+            await _apartment.CreateApartment(Apartment);
 
             return RedirectToPage("./Index");
         }

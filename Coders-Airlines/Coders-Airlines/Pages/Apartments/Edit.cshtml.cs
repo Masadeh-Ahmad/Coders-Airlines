@@ -14,11 +14,11 @@ namespace Coders_Airlines.Pages.Apartments
 {
     public class EditModel : PageModel
     {
-        private readonly IApartment apartmentService;
+        private readonly IApartment _apartment;
 
-        public EditModel(IApartment service)
+        public EditModel(IApartment apartment)
         {
-            apartmentService = service;
+            _apartment = apartment;
         }
 
         [BindProperty]
@@ -31,7 +31,7 @@ namespace Coders_Airlines.Pages.Apartments
                 return NotFound();
             }
 
-            Apartment = await apartmentService.GetApartment(id);
+            Apartment = await _apartment.GetApartment(id);
 
             if (Apartment == null)
             {
@@ -48,7 +48,7 @@ namespace Coders_Airlines.Pages.Apartments
             {
                 return Page();
             }
-            await apartmentService.UpdateApartment(Apartment.ID, Apartment);
+            await _apartment.UpdateApartment(Apartment.ID, Apartment);
             
             return RedirectToPage("./Index");
         }

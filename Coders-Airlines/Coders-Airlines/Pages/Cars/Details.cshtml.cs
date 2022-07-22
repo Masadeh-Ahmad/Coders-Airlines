@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Cars
 {
     public class DetailsModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly ICar _car;
 
-        public DetailsModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public DetailsModel(ICar car)
         {
-            _context = context;
+            _car = car;
         }
 
         public Car Car { get; set; }
@@ -28,7 +29,7 @@ namespace Coders_Airlines.Pages.Cars
                 return NotFound();
             }
 
-            Car = await _context.Cars.FirstOrDefaultAsync(m => m.ID == id);
+            Car = await _car.GetCar(id);
 
             if (Car == null)
             {

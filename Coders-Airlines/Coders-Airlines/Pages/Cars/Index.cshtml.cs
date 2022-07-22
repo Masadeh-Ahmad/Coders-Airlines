@@ -7,23 +7,24 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Cars
 {
     public class IndexModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly ICar _car;
 
-        public IndexModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public IndexModel(ICar car)
         {
-            _context = context;
+            _car = car;
         }
 
-        public IList<Car> Car { get;set; }
+        public List<Car> Cars { get; set; }
 
         public async Task OnGetAsync()
         {
-            Car = await _context.Cars.ToListAsync();
+            Cars = await _car.GetCars();
         }
     }
 }
