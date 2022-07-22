@@ -51,6 +51,17 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Flight.ID">Edit</a> |
+    @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Flight.ID">Edit</a>
+
+    }
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Flight.ID">Purchase</a>
+
+    }
+
     <a asp-page="./Index">Back to List</a>
 </div>
