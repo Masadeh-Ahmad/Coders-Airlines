@@ -15,9 +15,9 @@ namespace Coders_Airlines.Pages.Flights
     {
         private readonly IFlight _flight;
 
-        public IndexModel(IFlight flight)
+        public IndexModel(IFlight Flight)
         {
-            _flight = flight;
+            _flight = Flight;
         }
 
         public List<Flight> Flights { get; set; }

@@ -64,7 +64,7 @@ namespace Coders_Airlines.Auth
                 // here goes the roles specifications ... 
                 IList<string> Roles = new List<string>();
 
-                Roles.Add("user");
+                Roles.Add("administrator");
 
                 await _userManager.AddToRolesAsync(user, Roles);
                 //await _email.WelcomeMail(registerDto.Email);
