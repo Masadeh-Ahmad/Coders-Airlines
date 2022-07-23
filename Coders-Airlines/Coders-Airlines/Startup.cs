@@ -51,7 +51,6 @@ namespace Coders_Airlines
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
-
             services.AddTransient<IEmail, EmailService>();
 
             // Map the interface with the service
