@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Coders_Airlines.Models
 {
-
     public enum Class
     {
         Economy,
@@ -25,6 +22,8 @@ namespace Coders_Airlines.Models
         public string To { get; set; }
         public DateTime DepartureDate { get; set; }
         public DateTime ArrivalDate { get; set; }
+        // New Property!!!
+        public int SeatsLeft { get; set; }
         public Luggage NumOfBags { get; set; }
         public Class ClassType { get; set; }
         public double Price { get; set; }
