@@ -2,3 +2,27 @@
 @model Coders_Airlines.Pages.Profile.editModel
 @{
 }
+<h4>Update your profile</h4>
+<form asp-controller="Product" asp-action="Update" method="post" enctype="multipart/form-data" class="px-4 py-3">
+    <input hidden asp-for="UserID" />
+
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input asp-for="UserName" name="Name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input asp-for="Email" name="Email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input asp-for="Password" name="Password" class="form-control" required>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<div asp-validation-summary="All"></div>
