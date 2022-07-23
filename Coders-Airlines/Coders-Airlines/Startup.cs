@@ -56,6 +56,8 @@ namespace Coders_Airlines
 
             // Map the interface with the service
             services.AddTransient<IApartment, ApartmentService>();
+            services.AddTransient<IFlight, FlightService>();
+            services.AddTransient<ICar, CarService>();
             services.AddTransient<IUser, UserService>();
 
             // failed trials - accessing paths

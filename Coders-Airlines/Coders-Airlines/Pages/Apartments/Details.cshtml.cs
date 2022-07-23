@@ -13,11 +13,11 @@ namespace Coders_Airlines.Pages.Apartments
 {
     public class DetailsModel : PageModel
     {
-        private readonly IApartment apartmentService;
+        private readonly IApartment _apartment;
 
-        public DetailsModel(IApartment service)
+        public DetailsModel(IApartment apartment)
         {
-            apartmentService = service;
+            _apartment = apartment;
         }
 
         public Apartment Apartment { get; set; }
@@ -29,7 +29,7 @@ namespace Coders_Airlines.Pages.Apartments
                 return NotFound();
             }
 
-            Apartment = await apartmentService.GetApartment(id);
+            Apartment = await _apartment.GetApartment(id);
 
             if (Apartment == null)
             {

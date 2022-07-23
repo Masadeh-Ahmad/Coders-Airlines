@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Flights
 {
     public class CreateModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly IFlight _flight;
 
-        public CreateModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public CreateModel(IFlight flight)
         {
-            _context = context;
+            _flight = flight;
         }
 
         public IActionResult OnGet()
@@ -35,8 +36,7 @@ namespace Coders_Airlines.Pages.Flights
                 return Page();
             }
 
-            _context.Flights.Add(Flight);
-            await _context.SaveChangesAsync();
+            await _flight.CreateFlight(Flight);
 
             return RedirectToPage("./Index");
         }

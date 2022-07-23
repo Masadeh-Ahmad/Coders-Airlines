@@ -8,16 +8,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Flights
 {
     public class EditModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly IFlight _flight;
 
-        public EditModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public EditModel(IFlight flight)
         {
-            _context = context;
+            _flight = flight;
         }
 
         [BindProperty]
@@ -30,7 +31,7 @@ namespace Coders_Airlines.Pages.Flights
                 return NotFound();
             }
 
-            Flight = await _context.Flights.FirstOrDefaultAsync(m => m.ID == id);
+            Flight = await _flight.GetFlight(id);
 
             if (Flight == null)
             {
@@ -47,31 +48,9 @@ namespace Coders_Airlines.Pages.Flights
             {
                 return Page();
             }
-
-            _context.Attach(Flight).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FlightExists(Flight.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _flight.UpdateFlight(Flight.ID, Flight);
 
             return RedirectToPage("./Index");
-        }
-
-        private bool FlightExists(int id)
-        {
-            return _context.Flights.Any(e => e.ID == id);
         }
     }
 }

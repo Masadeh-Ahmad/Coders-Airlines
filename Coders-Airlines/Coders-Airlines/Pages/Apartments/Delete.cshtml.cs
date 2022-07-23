@@ -13,11 +13,11 @@ namespace Coders_Airlines.Pages.Apartments
 {
     public class DeleteModel : PageModel
     {
-        private readonly IApartment apartmentService;
+        private readonly IApartment _apartment;
 
-        public DeleteModel(IApartment service)
+        public DeleteModel(IApartment apartment)
         {
-            apartmentService = service;
+            _apartment = apartment;
         }
 
         [BindProperty]
@@ -30,7 +30,7 @@ namespace Coders_Airlines.Pages.Apartments
                 return NotFound();
             }
 
-            Apartment = await apartmentService.GetApartment(id);
+            Apartment = await _apartment.GetApartment(id);
 
             if (Apartment == null)
             {
@@ -46,7 +46,7 @@ namespace Coders_Airlines.Pages.Apartments
                 return NotFound();
             }
 
-            await apartmentService.DeleteApartment(id);
+            await _apartment.DeleteApartment(id);
 
             return RedirectToPage("./Index");
         }

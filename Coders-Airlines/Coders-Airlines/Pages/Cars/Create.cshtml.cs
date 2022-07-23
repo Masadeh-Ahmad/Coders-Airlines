@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Cars
 {
     public class CreateModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly ICar _car;
 
-        public CreateModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public CreateModel(ICar car)
         {
-            _context = context;
+            _car = car;
         }
 
         public IActionResult OnGet()
@@ -35,8 +36,7 @@ namespace Coders_Airlines.Pages.Cars
                 return Page();
             }
 
-            _context.Cars.Add(Car);
-            await _context.SaveChangesAsync();
+            await _car.CreateCar(Car);
 
             return RedirectToPage("./Index");
         }

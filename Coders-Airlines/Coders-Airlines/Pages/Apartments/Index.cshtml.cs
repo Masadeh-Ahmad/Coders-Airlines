@@ -13,18 +13,18 @@ namespace Coders_Airlines.Pages.Apartments
 {
     public class IndexModel : PageModel
     {
-        private readonly IApartment apartmentService;
+        private readonly IApartment _apartment;
 
-        public IndexModel(IApartment service)
+        public IndexModel(IApartment apartment)
         {
-            apartmentService = service;
+            _apartment = apartment;
         }
 
         public List<Apartment> Apartments { get;set; }
 
         public async Task OnGetAsync()
         {
-            Apartments = await apartmentService.GetApartments();
+            Apartments = await _apartment.GetApartments();
         }
     }
 }

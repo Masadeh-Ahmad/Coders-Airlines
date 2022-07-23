@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Flights
 {
     public class DetailsModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly IFlight _flight;
 
-        public DetailsModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public DetailsModel(IFlight flight)
         {
-            _context = context;
+            _flight = flight;
         }
 
         public Flight Flight { get; set; }
@@ -28,7 +29,7 @@ namespace Coders_Airlines.Pages.Flights
                 return NotFound();
             }
 
-            Flight = await _context.Flights.FirstOrDefaultAsync(m => m.ID == id);
+            Flight = await _flight.GetFlight(id);
 
             if (Flight == null)
             {

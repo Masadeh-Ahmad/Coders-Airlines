@@ -7,23 +7,24 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Flights
 {
     public class IndexModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly IFlight _flight;
 
-        public IndexModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public IndexModel(IFlight flight)
         {
-            _context = context;
+            _flight = flight;
         }
 
-        public IList<Flight> Flight { get;set; }
+        public List<Flight> Flights { get; set; }
 
         public async Task OnGetAsync()
         {
-            Flight = await _context.Flights.ToListAsync();
+            Flights = await _flight.GetFlights();
         }
     }
 }

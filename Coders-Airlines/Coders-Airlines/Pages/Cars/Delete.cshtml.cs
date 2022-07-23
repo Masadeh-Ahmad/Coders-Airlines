@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Cars
 {
     public class DeleteModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly ICar _car;
 
-        public DeleteModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public DeleteModel(ICar car)
         {
-            _context = context;
+            _car = car;
         }
 
         [BindProperty]
@@ -29,7 +30,7 @@ namespace Coders_Airlines.Pages.Cars
                 return NotFound();
             }
 
-            Car = await _context.Cars.FirstOrDefaultAsync(m => m.ID == id);
+            Car = await _car.GetCar(id);
 
             if (Car == null)
             {
@@ -45,13 +46,7 @@ namespace Coders_Airlines.Pages.Cars
                 return NotFound();
             }
 
-            Car = await _context.Cars.FindAsync(id);
-
-            if (Car != null)
-            {
-                _context.Cars.Remove(Car);
-                await _context.SaveChangesAsync();
-            }
+            await _car.DeleteCar(id);
 
             return RedirectToPage("./Index");
         }

@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Coders_Airlines.Models.Interfaces;
 
 namespace Coders_Airlines.Pages.Flights
 {
     public class DeleteModel : PageModel
     {
-        private readonly Coders_Airlines.Data.AirlinesDbContext _context;
+        private readonly IFlight _flight;
 
-        public DeleteModel(Coders_Airlines.Data.AirlinesDbContext context)
+        public DeleteModel(IFlight flight)
         {
-            _context = context;
+            _flight = flight;
         }
 
         [BindProperty]
@@ -29,7 +30,7 @@ namespace Coders_Airlines.Pages.Flights
                 return NotFound();
             }
 
-            Flight = await _context.Flights.FirstOrDefaultAsync(m => m.ID == id);
+            Flight = await _flight.GetFlight(id);
 
             if (Flight == null)
             {
@@ -45,13 +46,7 @@ namespace Coders_Airlines.Pages.Flights
                 return NotFound();
             }
 
-            Flight = await _context.Flights.FindAsync(id);
-
-            if (Flight != null)
-            {
-                _context.Flights.Remove(Flight);
-                await _context.SaveChangesAsync();
-            }
+            await _flight.DeleteFlight(id);
 
             return RedirectToPage("./Index");
         }
