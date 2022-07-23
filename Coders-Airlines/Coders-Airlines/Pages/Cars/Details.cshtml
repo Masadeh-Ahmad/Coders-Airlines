@@ -75,7 +75,7 @@
     {
         <a asp-page="./Edit" asp-route-id="@Model.Car.ID">Edit</a>
     }
-    @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+    @if (User.Identity.IsAuthenticated && (User.IsInRole("user") || User.IsInRole("administrator")))
             {
         <a asp-page="./CarRental" asp-route-id="@Model.Car.ID">Rent This Car </a> 
 

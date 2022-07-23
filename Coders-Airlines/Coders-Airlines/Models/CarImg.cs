@@ -10,7 +10,6 @@ namespace Coders_Airlines.Models
         public int ID { get; set; }
         public int CarID { get; set; }
         public string URL { get; set; }
-
         public Car Car { get; set; }
     }
 }

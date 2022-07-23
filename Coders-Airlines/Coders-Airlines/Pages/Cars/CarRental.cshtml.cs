@@ -1,24 +1,26 @@
+using Coders_Airlines.Auth.Interfaces;
 using Coders_Airlines.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Coders_Airlines.Pages.Cars
 {
-    [Authorize(Roles ="user")]
     public class CarRentalModel : PageModel
     {
         private readonly Coders_Airlines.Data.AirlinesDbContext _context;
-        public CarRentalModel(Coders_Airlines.Data.AirlinesDbContext context)
+        private IUser _userService;
+
+        public CarRentalModel(Data.AirlinesDbContext context, IUser user)
         {
             _context = context;
+            _userService = user;
         }
- 
+
         public Car Car { get; set; }
         [BindProperty]
         public CarRental CarRental { get; set; }
@@ -47,25 +49,19 @@ namespace Coders_Airlines.Pages.Cars
         }
         public async Task<IActionResult> OnPostCheck(int? id)
         {
-
             await OnGetAsync(id);
             CarRental last = new CarRental();
-            double days = 0;
-            try
+            bool available = true;
+
+            List<CarRental> rentals = await _context.CarRentals.Where(x => x.CarID == id).ToListAsync();
+            foreach (var item in rentals)
             {
-                last = await _context.CarRentals.OrderByDescending(p => p.Id).FirstOrDefaultAsync();
-                
-            }
-            catch
-            {
-                days = (CarRental.To - CarRental.From).TotalDays;
-                CarRental.Price = days * Car.RentalCost;
-                CarRental.CarID = Car.ID;
-                CarRental.UserId = "d73fc9f5-166b-42bf-8aff-dd1a882b318c";
-                return Page();
+                if (CarRental.From < item.To && item.From < CarRental.To) { available = false; }
             }
 
-            if (last.To >= CarRental.From)
+            double days = 0;
+
+            if (!available)
             {
                 CarRental.Price = 0;
                 return Page();
@@ -73,11 +69,9 @@ namespace Coders_Airlines.Pages.Cars
             days = (CarRental.To - CarRental.From).TotalDays;
             CarRental.Price = days * Car.RentalCost;
             CarRental.CarID = Car.ID;
-            CarRental.UserId = "d73fc9f5-166b-42bf-8aff-dd1a882b318c";
+            var user = await _userService.GetUser();
+            CarRental.UserId = user.Id;
             return Page();
-
-           
-
         }
     }
 }

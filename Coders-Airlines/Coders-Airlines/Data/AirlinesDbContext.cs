@@ -63,11 +63,9 @@ namespace Coders_Airlines.Data
 
             modelBuilder.Entity<IdentityRoleClaim<string>>().HasData(RoleClaims);
 
-            modelBuilder.Entity<ApartmentRental>().HasKey(x => new { x.ApartmentID, x.UserId });
+            //modelBuilder.Entity<ApartmentRental>().HasKey(x => new { x.ApartmentID, x.UserId });
             //modelBuilder.Entity<CarRental>().HasKey(x => new { x.CarID, x.UserId });
-            modelBuilder.Entity<Booking>().HasKey(x => new { x.FlightID, x.UserId });
-
-
+            //modelBuilder.Entity<Booking>().HasKey(x => new { x.FlightID, x.UserId });
 
         }
     }
