@@ -17,9 +17,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="user.Id" />
             <div class="form-group">
+                <label asp-for="user.UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" placeholder="@Model.user.UserName"/>
+                <span asp-validation-for="user.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="user.Email" class="control-label"></label>
-                <input asp-for="user.Email" class="form-control" />
+                <input asp-for="Email" placeholder="@Model.user.Email"class="form-control" />
                 <span asp-validation-for="user.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="user.PasswordHash" class="text-danger"></span>
             </div>
             <div>
                 <input type="submit" value="Save" class="btn btn-primary" />
