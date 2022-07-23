@@ -1,8 +1,15 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Coders_Airlines.Pages.Profile.IndexModel
 @{
 }
 
 
 <h1>Welcome to your profile @User.Identity.Name</h1>
+
+<a asp-page="/Profile/edit">Update Your Profile Settings</a>
+
+<a asp-page="/Profile/edit">Car Rental History</a>
+<a asp-page="/Profile/edit">Apartment Rental History</a>
+<a asp-page="/Profile/edit">Flight History</a>
 
