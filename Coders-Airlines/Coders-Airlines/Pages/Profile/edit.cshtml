@@ -1,28 +1,37 @@
 ﻿@page
 @model Coders_Airlines.Pages.Profile.editModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
 }
+@{
+    ViewData["Title"] = "Edit";
+}
+
 <h4>Update your profile</h4>
-<form asp-controller="Product" asp-action="Update" method="post" enctype="multipart/form-data" class="px-4 py-3">
-    <input hidden asp-for="UserID" />
 
-    <div class="mb-3">
-        <label for="Name" class="form-label">Name</label>
-        <input asp-for="UserName" name="Name" class="form-control" required>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="user.Id" />
+            <div class="form-group">
+                <label asp-for="user.Email" class="control-label"></label>
+                <input asp-for="user.Email" class="form-control" />
+                <span asp-validation-for="user.Email" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="mb-3">
-        <label for="Email" class="form-label">Email</label>
-        <input asp-for="Email" name="Email" class="form-control" required>
-    </div>
-    <div class="mb-3">
-        <label for="Password" class="form-label">Password</label>
-        <input asp-for="Password" name="Password" class="form-control" required>
-    </div>
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
 
-
-
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-
-<div asp-validation-summary="All"></div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

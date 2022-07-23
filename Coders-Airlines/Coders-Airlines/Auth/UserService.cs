@@ -3,11 +3,10 @@ using Coders_Airlines.Auth.Model;
 using Coders_Airlines.Auth.Model.DTO;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Coders_Airlines.Auth
@@ -19,6 +18,7 @@ namespace Coders_Airlines.Auth
         private SignInManager<ApplicationUser> _signInManager;
         private readonly AirlinesDbContext _context;
         private readonly IEmail _email;
+        private IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
         /// Constructor to assign these variables.
@@ -27,12 +27,13 @@ namespace Coders_Airlines.Auth
         /// <param name="SignInMngr"></param>
         /// <param name="dbContext"></param>
         /// <param name="email"></param>
-        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> SignInMngr, AirlinesDbContext dbContext, IEmail email)
+        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> SignInMngr, AirlinesDbContext dbContext, IEmail email, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = SignInMngr;
             _context = dbContext;
             _email = email;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -57,7 +58,6 @@ namespace Coders_Airlines.Auth
             // user.CartID = user.Id;
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
-
 
             if (result.Succeeded)
             {
@@ -87,6 +87,7 @@ namespace Coders_Airlines.Auth
             }
             return null;
         }
+
 
 
         /// <summary>
@@ -121,6 +122,17 @@ namespace Coders_Airlines.Auth
         public async Task Logout()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task<ApplicationUser> GetUser()
+        {
+            return await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+        }
+
+        public async Task UpdateUser(ApplicationUser user)
+        {
+            await _userManager.UpdateAsync(user);
+
         }
     }
 }
