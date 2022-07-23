@@ -25,10 +25,10 @@
                 @Html.DisplayNameFor(model => model.Flights[0].ArrivalDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Flights[0].NumOfBags)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Flights[0].ClassType)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Flights[0].SeatsLeft)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Flights[0].Price)
@@ -53,10 +53,10 @@
                     @Html.DisplayFor(modelItem => item.ArrivalDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumOfBags)
+                    @Html.DisplayFor(modelItem => item.ClassType)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ClassType)
+                    @Html.DisplayFor(modelItem => item.SeatsLeft)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
