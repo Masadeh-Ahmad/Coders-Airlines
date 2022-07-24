@@ -14,20 +14,24 @@ namespace Coders_Airlines.Pages.Cars
     public class CreateModel : PageModel
     {
         private readonly ICar _car;
+        private readonly ICountry _country;
 
-        public CreateModel(ICar car)
+        public CreateModel(ICar car, ICountry country)
         {
             _car = car;
+            _country = country;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            Cities = await _country.GetCities();
             return Page();
         }
 
         [BindProperty]
         public Car Car { get; set; }
-        public Country Country { get; set; }
+        public List<City> Cities { get; set; }
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
