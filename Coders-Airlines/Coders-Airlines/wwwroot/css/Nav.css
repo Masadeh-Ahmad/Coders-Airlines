@@ -8,13 +8,7 @@
     background-size: cover;
 }
 
-#carouselExampleIndicators{
-    height: 50vh;
-}
 
-img{
-    height:50vh;
-}
 
 .carousel-caption {
     bottom: 270px;
