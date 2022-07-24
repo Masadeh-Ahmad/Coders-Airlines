@@ -21,22 +21,43 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" style="color:#ffffff" href="#">Home</a>
+                        <a class="nav-link" asp-page="/Index/Index" style="color:#ffffff">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#ffffff" href="#">About</a>
+                        <a class="nav-link" asp-page="/Cars/Index" style="color:#ffffff">Cars</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#ffffff" href="#">Portfolio</a>
+                        <a class="nav-link" asp-page="/Apartments/Index" style="color:#ffffff">Apartments</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#ffffff" href="#">Services</a>
+                        <a class="nav-link" asp-page="/Contacts/Index" style="color:#ffffff">Contacts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#ffffff" href="#">Contact</a>
+                        <a class="nav-link" asp-page="/About/Index" style="color:#ffffff">About</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                   @if (User.Identity.IsAuthenticated)
+                    {
+                       <li class="nav-item">
+
+                           <a class="nav-link" asp-area="" asp-controller="Auth" asp-action="Logout" style="color:#ffffff"> SignOut</a>
+                        </li>
+                    }
+                    else
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Auth/LogIn" style="color:#ffffff"> SignIn</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Auth/SignUp" style="color:#ffffff"> Register</a>
+                        </li>
+
+                    }
+                    </ul>
             </div>
+            
         </div>
     </nav>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

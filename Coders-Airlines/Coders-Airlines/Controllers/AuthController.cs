@@ -38,14 +38,14 @@ namespace Coders_Airlines.Controllers
             {
                 return Redirect("/auth/index");
             }
-            return RedirectToAction("List", "Category");
+            return RedirectToAction("Index", "Index");
         }
 
         /// <summary>
         /// This method gets the sign up page for the Admins.
         /// </summary>
         /// <returns> Returns a view for the sign up page for the Admins. </returns>
-        [Authorize(Roles = "editor,administrator")]
+        //[Authorize(Roles = "editor,administrator")]
         public IActionResult SignUp()
         {
             return View();
@@ -56,7 +56,7 @@ namespace Coders_Airlines.Controllers
         /// </summary>
         /// <param name="register"></param>
         /// <returns> Returns a view for the sign in view if the user got registered, else, return view for the same page. </returns>
-        [Authorize(Roles = "editor,administrator")]
+        //[Authorize(Roles = "editor,administrator")]
         [HttpPost]
         public async Task<ActionResult<UserDTO>> SignUp(RegisterDTO register)
         {
@@ -77,11 +77,11 @@ namespace Coders_Airlines.Controllers
         /// This method is used to sign out the user.
         /// </summary>
         /// <returns> Returns a page of categories for the user. </returns>
-        [Authorize(Roles = "user")]
+        
         public async Task<IActionResult> Logout()
         {
             await userService.Logout();
-            return Redirect("/Categories/Categories");
+            return Redirect("/Index");
         }
 
         /// <summary>
