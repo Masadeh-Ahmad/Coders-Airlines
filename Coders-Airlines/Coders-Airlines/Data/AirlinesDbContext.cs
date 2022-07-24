@@ -3,8 +3,10 @@ using Coders_Airlines.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +23,8 @@ namespace Coders_Airlines.Data
         public DbSet<FlightImg> FlightImgs { get; set; }
         public DbSet<CarImg> CarImgs { get; set; }
         public DbSet<ApartmentImg> ApartmentImgs { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<City> City { get; set; }
 
         public AirlinesDbContext(DbContextOptions options) : base(options)
         { 
@@ -29,12 +33,32 @@ namespace Coders_Airlines.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Category>().HasData
-            //   (
+            List<Countries> countryList = new List<Countries>();
+            using (StreamReader r = new StreamReader(".\\Assets\\Countries.json"))
+            {
+                string json = r.ReadToEnd();
+                countryList = JsonConvert.DeserializeObject<List<Countries>>(json);
+            }
+            foreach (Countries country in countryList) 
+            { 
+                modelBuilder.Entity<Country>().HasData( new Country { Id = country.ID , Name = country.Name}); 
+            }
+            int id = 1;
+            foreach (Countries country in countryList)
+            {
+                foreach(string city in country.Cities)
+                {
+                    modelBuilder.Entity<City>().HasData(new City { Id = id++, Name = city , CountryID = country.ID });
+                }
+            }
 
-            //    );
 
-            SeedRoles(modelBuilder, "administrator", "create", "delete");
+                //modelBuilder.Entity<Category>().HasData
+                //   (
+
+                //    );
+
+                SeedRoles(modelBuilder, "administrator", "create", "delete");
             SeedRoles(modelBuilder, "user", "create");
         }
 

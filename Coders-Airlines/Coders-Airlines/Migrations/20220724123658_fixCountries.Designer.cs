@@ -4,14 +4,16 @@ using Coders_Airlines.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Coders_Airlines.Migrations
 {
     [DbContext(typeof(AirlinesDbContext))]
-    partial class AirlinesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220724123658_fixCountries")]
+    partial class fixCountries
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
