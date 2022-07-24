@@ -14,19 +14,23 @@ namespace Coders_Airlines.Pages.Apartments
     public class CreateModel : PageModel
     {
         private readonly IApartment _apartment;
+        private readonly ICountry _country;
 
-        public CreateModel(IApartment apartment)
+        public CreateModel(IApartment apartment, ICountry country)
         {
             _apartment = apartment;
+            _country = country;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            Cities = await _country.GetCities();
             return Page();
         }
 
         [BindProperty]
         public Apartment Apartment { get; set; }
+        public List<City> Cities { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()

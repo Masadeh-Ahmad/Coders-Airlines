@@ -15,14 +15,17 @@ namespace Coders_Airlines.Pages.Apartments
     public class EditModel : PageModel
     {
         private readonly IApartment _apartment;
+        private readonly ICountry _country;
 
-        public EditModel(IApartment apartment)
+        public EditModel(IApartment apartment, ICountry country)
         {
             _apartment = apartment;
+            _country = country;
         }
 
         [BindProperty]
         public Apartment Apartment { get; set; }
+        public List<City> Cities { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +33,7 @@ namespace Coders_Airlines.Pages.Apartments
             {
                 return NotFound();
             }
-
+            Cities = await _country.GetCities();
             Apartment = await _apartment.GetApartment(id);
 
             if (Apartment == null)
