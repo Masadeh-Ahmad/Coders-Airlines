@@ -58,6 +58,7 @@ namespace Coders_Airlines
             services.AddTransient<IFlight, FlightService>();
             services.AddTransient<ICar, CarService>();
             services.AddTransient<IUser, UserService>();
+            services.AddTransient<ICountry, CountryServise>();
 
             // failed trials - accessing paths
             // new for Cookies auth
