@@ -27,6 +27,7 @@ namespace Coders_Airlines.Pages.Cars
 
         [BindProperty]
         public Car Car { get; set; }
+        public Country Country { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()

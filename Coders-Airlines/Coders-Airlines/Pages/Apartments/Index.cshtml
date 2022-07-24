@@ -22,10 +22,10 @@
                       <div class="text-center">
                         <h5 class="card-title">@apartment.City</h5>
                         <p class="text-muted mb-4">@apartment.Description</p>
-                        <p class="text-muted mb-4">Is Available: @apartment.IsAvailable</p>
+                       
                       </div>
                       <div class="d-flex justify-content-center font-weight-bold mt-4">
-                        <a asp-page="/" asp-route-id="@apartment.ID">Rent</a>
+                        <a asp-page="./ApartmentRental" asp-route-id="@apartment.ID">Rent</a>
                       </div>
                       <div class="d-flex justify-content-center font-weight-bold mt-4">
                         @if(User.Identity.IsAuthenticated && User.IsInRole("administrator"))
