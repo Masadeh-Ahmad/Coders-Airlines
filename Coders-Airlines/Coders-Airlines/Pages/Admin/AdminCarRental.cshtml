@@ -1,0 +1,79 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Coders_Airlines.Pages.Admin.AdminCarRentalModel
+
+@{
+    ViewData["Title"] = "AdminCarRental";
+}
+
+<h1>AdminCarRental</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].From)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].To)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].Car)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].Car.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].Car.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].Car.RentalCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarRental[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CarRental != null)
+        {
+            @foreach (var item in Model.CarRental)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.From)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.To)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Car.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Car.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Car.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Car.RentalCost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.UserName)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
