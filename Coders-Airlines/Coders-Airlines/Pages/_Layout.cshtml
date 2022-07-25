@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,112 +9,148 @@
 
 
     <link rel="stylesheet" href="~/css/Nav.css" />
+    <link rel="stylesheet" href="~/css/Footer.css" />
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" style="color:#ffffff" href="#">Mouri</a>
-            <button class="navbar-toggler" style="background-color:#ffffff" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span style="background-color:#ffffff" class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-page="/Index/Index" style="color:#ffffff">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-page="/Cars/Index" style="color:#ffffff">Cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-page="/Apartments/Index" style="color:#ffffff">Apartments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-page="/Contacts/Index" style="color:#ffffff">Contacts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-page="/About/Index" style="color:#ffffff">About</a>
-                    </li>
-                    <li class="nav-item">
-                   @if (User.Identity.IsAuthenticated)
-                    {
-                       <li class="nav-item">
+    <div id="menuHolder">
+        <div role="navigation" class="sticky-top border-bottom border-top" id="mainNavigation">
+            <div class="flexMain">
+                <div class="flex2">
+                    <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
+                </div>
+                <div class="flex3 text-center" id="siteBrand">
+                    <button asp-page="/index" class="whiteLink siteLink">Coders Airlines</button>
+                </div>
 
-                           <a class="nav-link" asp-area="" asp-controller="Auth" asp-action="Logout" style="color:#ffffff"> SignOut</a>
+                <div class="flex2 text-end d-block d-md-none">
+                    <button class="whiteLink siteLink"><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="flex2 text-end d-none d-md-block">
+                    <button asp-page="/auth/signup" class="whiteLink siteLink">REGISTER</button>
+                    <button asp-page="/auth/login" class="blackLink siteLink">Login</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="menuDrawer">
+
+            <div>
+                <a asp-page="/index" class="nav-menu-item"><i class="fas fa-home me-3"></i>Home</a>
+                <a asp-page="/flights/index" class="nav-menu-item"><i class="fab fa-product-hunt me-3"></i>Flights</a>
+                <a asp-page="/apartments/index" class="nav-menu-item"><i class="fas fa-search me-3"></i>Apartments</a>
+                <a asp-page="/cars/index" class="nav-menu-item"><i class="fas fa-wrench me-3"></i>Cars</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-dollar-sign me-3"></i>Pricing</a>
+                <a href="#" class="nav-menu-item"><i class="fas fa-file-alt me-3"></i>Blog</a>
+                <a asp-page="/aboutus" class="nav-menu-item"><i class="fas fa-building me-3"></i>About Us</a>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <footer class="bg-dark text-center text-lg-start text-white" style="position: relative; bottom: 0; width: 100%; margin-top: 100px">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row mt-4">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">See other books</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-book fa-fw fa-sm me-2"></i>Bestsellers</a>
                         </li>
-                    }
-                    else
-                    {
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Auth/LogIn" style="color:#ffffff"> SignIn</a>
-
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-book fa-fw fa-sm me-2"></i>All books</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Auth/SignUp" style="color:#ffffff"> Register</a>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-user-edit fa-fw fa-sm me-2"></i>Our authors</a>
                         </li>
-
-                    }
                     </ul>
-            </div>
-            
-        </div>
-    </nav>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="https://i.postimg.cc/bNQp0RDW/1.jpg" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Slider One Item</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://i.postimg.cc/pVzg3LWn/2.jpg" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Slider One Item</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://i.postimg.cc/0y2F6Gpp/3.jpg" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Slider One Item</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Execution of the contract</h5>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - AppName</p>
-        </footer>
-    </div>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Supply</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-backspace fa-fw fa-sm me-2"></i>Returns</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Regulations</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Privacy policy</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Publishing house</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white">The BookStore</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">123 Street</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">05765 NY</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-briefcase fa-fw fa-sm me-2"></i>Send us a book</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Write to us</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-at fa-fw fa-sm me-2"></i>Help in purchasing</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Check the order status</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fas fa-envelope fa-fw fa-sm me-2"></i>Join the newsletter</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2021 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>*@
+    <script src="~/js/Nav.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
