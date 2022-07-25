@@ -15,22 +15,23 @@ namespace Coders_Airlines.Pages.Flights
     public class EditModel : PageModel
     {
         private readonly IFlight _flight;
-
-        public EditModel(IFlight flight)
+        private readonly ICountry _country;
+        public EditModel(IFlight flight, ICountry country)
         {
             _flight = flight;
+            _country = country;
         }
 
         [BindProperty]
         public Flight Flight { get; set; }
-
+        public List<City> Cities { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            Cities = await _country.GetCities();
             Flight = await _flight.GetFlight(id);
 
             if (Flight == null)

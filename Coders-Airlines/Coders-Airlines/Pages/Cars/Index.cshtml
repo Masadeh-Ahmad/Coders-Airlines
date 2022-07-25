@@ -35,12 +35,12 @@
                             @foreach (var item in Model.Cars)
                             {
                                 <div class="card">
-                                    <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                    <a class="img-card" asp-page = "./Details" asp-route-id="@item.ID">
+                                        <img src="@item.Thumbnail" />
                                     </a>
                                     <div class="card-content">
                                         <h4 class="card-title">
-                                            <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
+                                            <a asp-page = "./Details" asp-route-id="@item.ID">
                                                 @Html.DisplayFor(modelItem => item.Name)
                                             </a>
                                         </h4>
@@ -49,54 +49,54 @@
                                         </p>
                                     </div>
                                     <div class="card-read-more">
-                                        <a asp-page="/Cars/Details" class="btn btn-link btn-block">
-                                            Check Offer
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
-                                    </a>
-                                    <div class="card-content">
-                                        <h4 class="card-title">
-                                            <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                                                @Html.DisplayFor(modelItem => item.Name)
-                                            </a>
-                                        </h4>
-                                        <p class="">
-                                            @Html.DisplayFor(modelItem => item.Description)
-                                        </p>
-                                    </div>
-                                    <div class="card-read-more">
-                                        <a asp-page="/Cars/Details" class="btn btn-link btn-block">
-                                            Check Offer
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
-                                    </a>
-                                    <div class="card-content">
-                                        <h4 class="card-title">
-                                            <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                                                @Html.DisplayFor(modelItem => item.Name)
-                                            </a>
-                                        </h4>
-                                        <p class="">
-                                            @Html.DisplayFor(modelItem => item.Description)
-                                        </p>
-                                    </div>
-                                    <div class="card-read-more">
-                                        <a asp-page="/Cars/Details" class="btn btn-link btn-block">
+                                        <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-link btn-block">
                                             Check Offer
                                         </a>
                                     </div>
                                 </div>
                             }
+                                <div class="card">
+                                    <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
+                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                    </a>
+                                    <div class="card-content">
+                                        <h4 class="card-title">
+                                            <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
+                                                @Html.DisplayFor(modelItem => Model.Cars[0].Name)
+                                            </a>
+                                        </h4>
+                                        <p class="">
+                                            @Html.DisplayFor(modelItem => Model.Cars[0].Description)
+                                        </p>
+                                    </div>
+                                    <div class="card-read-more">
+                                        <a asp-page="/Cars/Details" class="btn btn-link btn-block">
+                                            Check Offer
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
+                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                    </a>
+                                    <div class="card-content">
+                                        <h4 class="card-title">
+                                            <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
+                                                @Html.DisplayFor(modelItem => Model.Cars[0].Name)
+                                            </a>
+                                        </h4>
+                                        <p class="">
+                                            @Html.DisplayFor(modelItem => Model.Cars[0].Description)
+                                        </p>
+                                    </div>
+                                    <div class="card-read-more">
+                                        <a asp-page="/Cars/Details" class="btn btn-link btn-block">
+                                            Check Offer
+                                        </a>
+                                    </div>
+                                </div>
+                            
                         </div>
                     </div>
                 </div>

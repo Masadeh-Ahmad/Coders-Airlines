@@ -14,20 +14,23 @@ namespace Coders_Airlines.Pages.Flights
     public class CreateModel : PageModel
     {
         private readonly IFlight _flight;
+        private readonly ICountry _country;
 
-        public CreateModel(IFlight flight)
+        public CreateModel(IFlight flight, ICountry country )
         {
             _flight = flight;
+            _country = country;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            Cities = await _country.GetCities();
             return Page();
         }
 
         [BindProperty]
         public Flight Flight { get; set; }
-
+        public List<City> Cities { get; set; }
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {

@@ -15,22 +15,24 @@ namespace Coders_Airlines.Pages.Cars
     public class EditModel : PageModel
     {
         private readonly ICar _car;
+        private readonly ICountry _country;
 
-        public EditModel(ICar car)
+        public EditModel(ICar car, ICountry country)
         {
             _car = car;
+            _country = country;
         }
 
         [BindProperty]
         public Car Car { get; set; }
-
+        public List<City> Cities { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            Cities = await _country.GetCities();
             Car = await _car.GetCar(id);
 
             if (Car == null)
