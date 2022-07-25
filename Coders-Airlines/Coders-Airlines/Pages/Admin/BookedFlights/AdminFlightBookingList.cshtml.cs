@@ -27,16 +27,13 @@ namespace Coders_Airlines.Pages.Admin
                 .Include(b => b.Flight)
                 .Include(b => b.User).ToListAsync();
         }
-        public async Task OnGetDate(DateTime from, DateTime to)
-        {
-            Booking = await _context.Bookings
-                .Where(b => b.Flight.DepartureDate > from && b.Flight.DepartureDate < to)
-                .Include(b => b.Flight)
-                .Include(b => b.User).ToListAsync();
-        }
         public async Task<IActionResult> OnPostAsync(DateTime dateFrom, DateTime dateTo)
         {
-            return RedirectToPage("AdminFlightBookingList", "Date", new { from = dateFrom, to = dateTo });
+            Booking = await _context.Bookings
+                .Where(b => b.Flight.DepartureDate > dateFrom && b.Flight.DepartureDate < dateTo)
+                .Include(b => b.Flight)
+                .Include(b => b.User).ToListAsync();
+            return Page();
         }
     }
 }

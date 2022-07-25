@@ -1,0 +1,90 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Coders_Airlines.Pages.Admin.AdminFlightBookingListModel
+
+@{
+    ViewData["Title"] = "AdminFlightBookingList";
+}
+
+<h1>Booked Flights</h1>
+
+    <form class="form-inline" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group ">
+            <label class="control-label" style="padding:5px">From</label>
+            <input type="date" name="dateFrom" class="form-control" />
+        </div>
+        <div class="form-group col-lg-4">
+            <label class="control-label" style="padding:5px">To</label>
+            <input type="date" name="dateTo" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Filter" class="btn btn-primary" asp-page="/Admin/BookedFlights/AdminFlightBookingList"/>
+        </div>
+    </form>
+    <br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].NumOfSeats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].NumOfBags)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].Flight.From)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].Flight.To)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].Flight.DepartureDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].Flight.ArrivalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Booking) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfSeats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfBags)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.From)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.To)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.ArrivalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
