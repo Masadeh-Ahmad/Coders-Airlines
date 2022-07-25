@@ -2,53 +2,112 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Coders_Airlines.Pages.Apartments.IndexModel
 
-@{
-    ViewData["Title"] = "Index";
-}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<div class="vh-100">
-    <div>
-        <h2 style="text-align:center">Apartments</h2>
-    </div>
-    <div class="container">
-        <div class="row justify-content-center">
-            @foreach (var apartment in Model.Apartments)
-            {
-                <div class="col-sm-6 col-lg-4 col-lg-2" style="padding : 5px ">
-                  <div class="card text-black">
-                    <img src="@apartment.Thumbnail"
-                      class="card-img-top" alt="..." />
-                    <div class="card-body">
-                      <div class="text-center">
-                        <h5 class="card-title">@apartment.City</h5>
-                        <p class="text-muted mb-4">@apartment.Description</p>
-                       
-                      </div>
-                      <div class="d-flex justify-content-center font-weight-bold mt-4">
-                        <a asp-page="./ApartmentRental" asp-route-id="@apartment.ID">Rent</a>
-                      </div>
-                      <div class="d-flex justify-content-center font-weight-bold mt-4">
-                        @if(User.Identity.IsAuthenticated && User.IsInRole("administrator"))
-                        {
-                            <a asp-page="./Edit" asp-route-id="@apartment.ID">Edit</a> <p>| </p>
-                            <a asp-page="./Details" asp-route-id="@apartment.ID">Details</a> <p>| </p>
-                            <a asp-page="./Delete" asp-route-id="@apartment.ID">Delete</a>
-                        }else
-                        {
-                            <a asp-page="./Details" asp-route-id="@apartment.ID">Details</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css" />
+    <title>Page Title</title>
+</head>
+<body>
 
-                        }
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            }
-            <p>
-                @if(User.Identity.IsAuthenticated && User.IsInRole("administrator"))
-                {
-                    <a asp-page="Create">Create New</a>
-                }
-            </p>
+
+    @*<div class="vh-100">
+        <div>
+            <h2 style="text-align:center">Apartments</h2>
         </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                @foreach (var apartment in Model.Apartments)
+                {
+                    <div class="col-sm-6 col-lg-4 col-lg-2" style="padding : 5px ">
+                        <div class="card text-black">
+                            <img src="@apartment.Thumbnail"
+                                 class="card-img-top" alt="..." />
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <h5 class="card-title">@apartment.City</h5>
+                                    <p class="text-muted mb-4">@apartment.Description</p>
+
+                                </div>
+                                <div class="d-flex justify-content-center font-weight-bold mt-4">
+                                    <a asp-page="./ApartmentRental" asp-route-id="@apartment.ID">Rent</a>
+                                </div>
+                                <div class="d-flex justify-content-center font-weight-bold mt-4">
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+                                    {
+                                        <a asp-page="./Edit" asp-route-id="@apartment.ID">Edit</a> <p>| </p>
+                                        <a asp-page="./Details" asp-route-id="@apartment.ID">Details</a> <p>| </p>
+                                        <a asp-page="./Delete" asp-route-id="@apartment.ID">Delete</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-page="./Details" asp-route-id="@apartment.ID">Details</a>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <p>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+                    {
+                        <a asp-page="Create">Create New</a>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>*@
+
+
+    @{
+        ViewData["Title"] = "Display Data";
+        string[] TableHeaders = new string[] {
+                        "ID",
+                        "City"
+                        ,"Description"
+                        ,"RentalCost" };
+        }
+
+    <div class="table">
+        <table id="myTable">
+            <thead>
+                <tr>
+                    @{
+                        foreach (var head in TableHeaders)
+                        {
+                            <th>
+                                @head
+                            </th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (var Data in Model.Apartments)
+                        {
+                            <tr onclick="window.location = './Apartments/Details/?id=@Data.ID'" ; style="cursor: pointer;">
+                                <td>@Data.ID</td>
+                                <td>@Data.City</td>
+                                <td>@Data.Description</td>
+                                <td>&#36;@Data.RentalCost</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
     </div>
-</div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+
+</html>
