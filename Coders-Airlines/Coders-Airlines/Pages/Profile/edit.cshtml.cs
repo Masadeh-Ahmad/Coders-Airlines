@@ -33,6 +33,12 @@ namespace Coders_Airlines.Pages.Profile
         public string Password { get; set; }
         [BindProperty]
         public string UserName { get; set; }
+        [BindProperty]
+        public string PhoneNumber { get; set; }
+        [BindProperty]
+        public string Gender { get; set; }
+        [BindProperty]
+        public DateTime DateOfBirth { get; set; }
 
         public async Task OnGet()
         {
@@ -53,11 +59,22 @@ namespace Coders_Airlines.Pages.Profile
             else
                 ModelState.AddModelError("", "Email cannot be empty");
 
+
+            if (!string.IsNullOrEmpty(PhoneNumber))
+                user.PhoneNumber = PhoneNumber;
+            else
+                ModelState.AddModelError("", "PhoneNumber cannot be empty");
+            if (!string.IsNullOrEmpty(Gender))
+                user.Gender = Gender;
+            else
+                ModelState.AddModelError("", "Gender cannot be empty");
+            
+                user.DateOfBirth = DateOfBirth;
             if (!string.IsNullOrEmpty(Password))
                 user.PasswordHash = _passwordHasher.HashPassword(user, Password);
             else
                 ModelState.AddModelError("", "Password cannot be empty");
-
+            
             if (!string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(UserName))
             {
                 IdentityResult result = await _userManager.UpdateAsync(user);

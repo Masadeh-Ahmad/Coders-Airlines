@@ -18,18 +18,33 @@
             <input type="hidden" asp-for="user.Id" />
             <div class="form-group">
                 <label asp-for="user.UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" placeholder="@Model.user.UserName"/>
+                <input asp-for="UserName" class="form-control" placeholder="@Model.user.UserName" />
                 <span asp-validation-for="user.UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="user.Email" class="control-label"></label>
-                <input asp-for="Email" placeholder="@Model.user.Email"class="form-control" />
+                <input asp-for="Email" placeholder="@Model.user.Email" class="form-control" />
                 <span asp-validation-for="user.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="user.PasswordHash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" placeholder="@Model.user.PhoneNumber" class="form-control" />
+                <span asp-validation-for="user.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.Gender" class="control-label"></label>
+                <input asp-for="Gender" placeholder="@Model.user.Gender" class="form-control" />
+                <span asp-validation-for="user.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user.DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" placeholder="@Model.user.DateOfBirth" class="form-control" />
+                <span asp-validation-for="user.DateOfBirth" class="text-danger"></span>
             </div>
             <div>
                 <input type="submit" value="Save" class="btn btn-primary" />

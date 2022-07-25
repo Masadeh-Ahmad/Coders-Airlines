@@ -52,6 +52,9 @@ namespace Coders_Airlines.Auth
             {
                 UserName = registerDto.UserName,
                 Email = registerDto.Email,
+                PhoneNumber = registerDto.PhoneNumber,
+                Gender = registerDto.Gender,
+                DateOfBirth = registerDto.DateOfBirth
                 //Cart = cart
 
             };
