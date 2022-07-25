@@ -19,7 +19,7 @@
         <div role="navigation" class="sticky-top border-bottom border-top" id="mainNavigation">
             <div class="flexMain">
                 <div class="flex2">
-                    <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> MENU</button>
+                    <button class="whiteLink siteLink" style="border-right:1px solid #eaeaea" onclick="menuToggle()"><i class="fas fa-bars me-2"></i> Menu</button>
                 </div>
                 <div class="flex3 text-center" id="siteBrand">
                     <button asp-page="/index" class="whiteLink siteLink">Coders Airlines</button>
@@ -30,8 +30,18 @@
                 </div>
 
                 <div class="flex2 text-end d-none d-md-block">
-                    <button asp-page="/auth/signup" class="whiteLink siteLink">REGISTER</button>
-                    <button asp-page="/auth/login" class="blackLink siteLink">Login</button>
+                    <form>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <button asp-page="/auth/signup" class="whiteLink siteLink">Register</button>
+                            <button asp-page="/auth/login" class="blackLink siteLink">LogIn</button>
+                        }
+                        else
+                        {
+                            <button asp-controller="Auth" asp-action="LogOut" class="blackLink siteLink">LogOut</button>
+                        }
+                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -43,8 +53,10 @@
                 <a asp-page="/flights/index" class="nav-menu-item"><i class="fab fa-product-hunt me-3"></i>Flights</a>
                 <a asp-page="/apartments/index" class="nav-menu-item"><i class="fas fa-search me-3"></i>Apartments</a>
                 <a asp-page="/cars/index" class="nav-menu-item"><i class="fas fa-wrench me-3"></i>Cars</a>
-                <a href="#" class="nav-menu-item"><i class="fas fa-dollar-sign me-3"></i>Pricing</a>
-                <a href="#" class="nav-menu-item"><i class="fas fa-file-alt me-3"></i>Blog</a>
+                @if (User.Identity.IsAuthenticated)
+            {
+                    <a asp-page="/profile/index" class="nav-menu-item"><i class="fas fa-dollar-sign me-3"></i>Profile</a>
+            }
                 <a asp-page="/aboutus" class="nav-menu-item"><i class="fas fa-building me-3"></i>About Us</a>
             </div>
         </div>
