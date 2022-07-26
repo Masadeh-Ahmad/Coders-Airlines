@@ -13,73 +13,88 @@
 </head>
 <body>
 
-<div>
-    <h4>Car</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Name)
-        </dd>
-        <dt class="col-sm-2">
-            Model Year
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.ModelYear)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Type)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Type)
-        </dd>
-        <dt class="col-sm-2">
-            Fuel Type
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.FuelType)
-        </dd>
-        <dt class="col-sm-2">
-            Rental Cost
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.RentalCost)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.City)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.City)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Description)
-        </dd>
-        
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Thumbnail)
-        </dt>
-        <dd class="col-sm-10">
-             <img src="@Model.Car.Thumbnail" width="150" height="100">
-        </dd>
-    </dl>
-</div>
-<div>
-    @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+    @if (@Model.Car != null)
     {
-        <a asp-page="./Edit" asp-route-id="@Model.Car.ID">Edit</a>
+        var car = Model.Car;
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@car.Thumbnail" alt="..." /></div>
+                    <div class="col-md-6">
+                        
+                        <h1 class="display-5 fw-bolder">@car.Name</h1>
+                        <div class="fs-5 mb-5">
+                            <h5>Rent/Day: $@car.RentalCost</h5>
+                            <h5>Model Year: @car.ModelYear</h5>
+                            <h5>City: @car.City</h5>
+                        </div>
+                        
+                        
+                        <p class="fs-5 mb-5">@car.Description</p>
+                        <div class="d-flex">
+                            <form>
+                                @if (User.Identity.IsAuthenticated && (User.IsInRole("user") || User.IsInRole("administrator")))
+                                {
+                                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                        <i class="bi-cart-fill me-1"></i>
+                                        <a asp-page="./CarRental" asp-route-id="@Model.Car.ID" style="text-decoration:none; color:black">Rent</a>
+
+                                    </button>
+                                }
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+                                {
+                                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                        <i class="bi-cart-fill me-1"></i>
+                                        <a asp-page="./Edit" asp-route-id="@Model.Car.ID" style="text-decoration:none; color:black">Edit</a>
+                                    </button>
+                                }
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                <i class="bi-cart-fill me-1"></i>
+                                <a asp-page="./Index" style="text-decoration:none; color:black">Back to List</a>
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related items section-->
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Suggested For You</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                <img style="height:200px" class="card-img-top" src="@Model.items[i].Thumbnail" alt="..." />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">@Model.items[i].Name</h5>
+                                        Model: @Model.items[i].ModelYear
+                                       
+                                    </div>
+                                    <div class="text-center">
+                                        <!-- Product price-->
+                                        City: @Model.items[i].City
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a asp-page="/ProductDetails/Details" asp-route-id="@Model.items[i].ID" class="btn btn-outline-dark mt-auto">View Product</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+
     }
-    @if (User.Identity.IsAuthenticated && (User.IsInRole("user") || User.IsInRole("administrator")))
-            {
-        <a asp-page="./CarRental" asp-route-id="@Model.Car.ID">Rent This Car </a> 
 
-            }
-
-    <a asp-page="./Index">Back to List</a>
-</div>
 </body>
 </html>

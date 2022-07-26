@@ -14,5 +14,7 @@ namespace Coders_Airlines.Models.Interfaces
         public Task<Car> UpdateCar(int? id, Car car);
 
         public Task DeleteCar(int? id);
+
+        public Task<List<Car>> RandomCar();
     }
 }
