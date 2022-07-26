@@ -20,6 +20,8 @@
     <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3 mt-3">
+            <input type="hidden" asp-for="Car.ID" />
+
             <div style="display:grid; grid-template-columns: 50% 50%" class="row">
 
                 <div class="col">
@@ -97,7 +99,7 @@
         </div>
 
         <div class="mb-3 mt-3">
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" value="Save" class="btn btn-primary" />
         </div>
         <div>
             <a asp-page="Index">Back to List</a>

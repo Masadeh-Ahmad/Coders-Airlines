@@ -17,5 +17,6 @@ namespace Coders_Airlines.Models.Interfaces
 
         public Task<List<Car>> RandomCar();
         public Task AddImg(CarImg carImg);
+        public Task<List<CarImg>> GetImgs(int ?id);
     }
 }

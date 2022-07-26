@@ -23,6 +23,7 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3 mt-3">
             <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <input type="hidden" asp-for="@Model.Flight.ID" />
                 <div class="col">
                     <label asp-for="Flight.From"></label>
                     <select asp-for="Flight.From" class="form-control" required>

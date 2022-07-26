@@ -14,17 +14,16 @@ namespace Coders_Airlines.Pages.Cars
     public class DetailsModel : PageModel
     {
         private readonly ICar _car;
-        [BindProperty]
         public List<Car> items { get; set; }
         public DetailsModel(ICar car)
         {
             _car = car;
             
         }
-
         public Car Car { get; set; }
         [BindProperty]
         public CarImg CarImg { get; set; }
+        public List<CarImg> Imgs { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -35,6 +34,7 @@ namespace Coders_Airlines.Pages.Cars
 
             Car = await _car.GetCar(id);
             items = await _car.RandomCar();
+            Imgs = await _car.GetImgs(id);
 
             if (Car == null)
             {
