@@ -6,46 +6,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="~/css/form.css" />
     <title>Create Flight</title>
+
 </head>
 <body>
 
-    <h4>Flight</h4>
+    <div style="align-items:center">
+        <h4 style="align-content:center">Create Flight</h4>
+    </div>
     <hr />
 
-    <form method="post" style="margin: auto; width: 500px;">
-
+    <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label asp-for="Flight.From"></label>
-                <select asp-for="Flight.From" class="form-control" required>
-                    @foreach (var city in @Model.Cities)
-                    {
-        <option>@city.Name</option>}
-                </select>
-                <span asp-validation-for="Flight.From" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-6">
-                <label asp-for="Flight.To"></label>
-                <select asp-for="Flight.To" class="form-control" required>
-                    @foreach (var city in @Model.Cities)
-                    {
-        <option>@city.Name</option>}
-                </select>
-                <span asp-validation-for="Flight.To" class="text-danger"></span>
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label asp-for="Flight.From"></label>
+                    <select asp-for="Flight.From" class="form-control" required>
+                        @foreach (var city in @Model.Cities)
+                        {
+                            <option>@city.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Flight.From" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Flight.To"></label>
+                    <select asp-for="Flight.To" class="form-control" required>
+                        @foreach (var city in @Model.Cities)
+                        {
+                            <option>@city.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Flight.To" class="text-danger"></span>
+                </div>
             </div>
         </div>
 
         <div class="mb-3 mt-3">
-            <label asp-for="Flight.DepartureDate" class="control-label"></label>
-            <input asp-for="Flight.DepartureDate" class="form-control" required/>
-            <span asp-validation-for="Flight.DepartureDate" class="text-danger"></span>
-        </div>
-        <div class="mb-3 mt-3">
-            <label asp-for="Flight.ArrivalDate" class="control-label"></label>
-            <input asp-for="Flight.ArrivalDate" class="form-control" required/>
-            <span asp-validation-for="Flight.ArrivalDate" class="text-danger"></span>
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label>Departure Date</label>
+                    <input asp-for="Flight.DepartureDate" class="form-control" required />
+                    <span asp-validation-for="Flight.DepartureDate" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label>Arrival Date</label>
+                    <input asp-for="Flight.ArrivalDate" class="form-control" required />
+                    <span asp-validation-for="Flight.ArrivalDate" class="text-danger"></span>
+                </div>
+            </div>
         </div>
 
         <div class="mb-3 mt-3">
@@ -57,33 +68,31 @@
             </select>
             <span asp-validation-for="Flight.ClassType" class="text-danger"></span>
         </div>
+
         <div class="mb-3 mt-3">
             <label asp-for="Flight.SeatsLeft" class="control-label"></label>
-            <input asp-for="Flight.SeatsLeft" class="form-control" required/>
+            <input asp-for="Flight.SeatsLeft" class="form-control" required />
             <span asp-validation-for="Flight.SeatsLeft" class="text-danger"></span>
         </div>
+
         <div class="mb-3 mt-3">
             <label asp-for="Flight.Price" class="control-label"></label>
-            <input asp-for="Flight.Price" class="form-control" required/>
+            <input asp-for="Flight.Price" class="form-control" required />
             <span asp-validation-for="Flight.Price" class="text-danger"></span>
         </div>
+
         <div class="mb-3 mt-3">
             <input type="submit" value="Create" class="btn btn-primary" />
         </div>
 
-        <div>
+        <div class="mb-3 mt-3">
             <a asp-page="Index">Back to List</a>
         </div>
     </form>
-
-    
-
-
-</body>
-</html>
-
 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</body>
+</html>
