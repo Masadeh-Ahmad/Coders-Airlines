@@ -14,10 +14,12 @@ namespace Coders_Airlines.Pages.Cars
     public class DetailsModel : PageModel
     {
         private readonly ICar _car;
-
+        [BindProperty]
+        public List<Car> items { get; set; }
         public DetailsModel(ICar car)
         {
             _car = car;
+            
         }
 
         public Car Car { get; set; }
@@ -30,6 +32,7 @@ namespace Coders_Airlines.Pages.Cars
             }
 
             Car = await _car.GetCar(id);
+            items = await _car.RandomCar();
 
             if (Car == null)
             {
