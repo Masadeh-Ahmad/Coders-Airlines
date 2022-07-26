@@ -12,9 +12,9 @@
 
 <a asp-page="/Profile/edit">Update Your Profile Settings</a>
 
-<a asp-page="/Profile/edit">Car Rental History</a>
-<a asp-page="/Profile/edit">Apartment Rental History</a>
-<a asp-page="/Profile/edit">Flight History</a>
+<a asp-route-username="@User.Identity.Name" asp-page="./CarHistory">Car Rental History</a>
+<a asp-route-username="@User.Identity.Name" asp-page="./ApartmentHistory">Apartment Rental History</a>
+<a asp-route-username="@User.Identity.Name" asp-page="./FlightHistory">Flight History</a>
 
 <p>
     @Html.DisplayNameFor(model => model.user.Email)
