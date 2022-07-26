@@ -6,51 +6,65 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Apartment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" style="margin: auto; width: 500px;">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Apartment.City" class="control-label"></label>
-                <select asp-for="Apartment.City" class="form-control" required>
-                    @foreach (var city in @Model.Cities)
-                    {
-                        <option>@city.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="Apartment.City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Apartment.RentalCost" class="control-label">Rental Cost</label>
-                <input asp-for="Apartment.RentalCost" class="form-control" required/>
-                <span asp-validation-for="Apartment.RentalCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Apartment.Description" class="control-label"></label>
-                <input asp-for="Apartment.Description" class="form-control" required/>
-                <span asp-validation-for="Apartment.Description" class="text-danger"></span>
-            </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="~/css/form.css" />
+</head>
+<body>
 
-            <div class="form-group">
-                <label asp-for="Apartment.Thumbnail" class="control-label"></label>
-                <input asp-for="Apartment.Thumbnail" class="form-control" required/>
-                <span asp-validation-for="Apartment.Thumbnail" class="text-danger"></span>
+    <h4>Create Apartment</h4>
+    <hr />
+    <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label asp-for="Apartment.City" class="control-label"></label>
+                    <select asp-for="Apartment.City" class="form-control" required>
+                        @foreach (var city in @Model.Cities)
+                        {
+                            <option>@city.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Apartment.City" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="Apartment.RentalCost" class="control-label">Rental Cost</label>
+                    <input asp-for="Apartment.RentalCost" class="form-control" required />
+                    <span asp-validation-for="Apartment.RentalCost" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary"/>
-            </div>
-            <div>
-                <a asp-page="Index">Back to List</a>
+        </div>
 
+        <div class="mb-3 mt-3">
+            <div class="form-group shadow-textarea">
+                <label>Description</label>
+                <textarea asp-for="Apartment.Description" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
             </div>
-        </form>
-    </div>
-</div>
+            <span asp-validation-for="Apartment.Description" class="text-danger"></span>
+        </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        <div class="mb-3 mt-3">
+            <label asp-for="Apartment.Thumbnail" class="control-label"></label>
+            <input asp-for="Apartment.Thumbnail" class="form-control" required />
+            <span asp-validation-for="Apartment.Thumbnail" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
+        <div class="mb-3 mt-3">
+            <a asp-page="Index">Back to List</a>
+        </div>
+    </form>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>
