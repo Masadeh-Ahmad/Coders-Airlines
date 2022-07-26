@@ -14,5 +14,7 @@ namespace Coders_Airlines.Models.Interfaces
         public Task<Apartment> UpdateApartment(int? id, Apartment apartment);
 
         public Task DeleteApartment(int? id);
+        public Task<List<Apartment>> RandomApartment();
+
     }
 }

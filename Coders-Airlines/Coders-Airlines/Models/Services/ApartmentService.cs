@@ -1,6 +1,7 @@
 ﻿using Coders_Airlines.Data;
 using Coders_Airlines.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,6 +46,19 @@ namespace Coders_Airlines.Models.Services
             Apartment apartment = await GetApartment(id);
             _context.Entry(apartment).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Apartment>> RandomApartment()
+        {
+            List<Apartment> Randoms = new List<Apartment>();
+            List<Apartment> Cars = await GetApartments();
+            Random Rnd = new Random();
+
+            for (int i = 0; i < 4; i++)
+            {
+                Randoms.Add(Cars[Rnd.Next(0, Cars.Count - 1)]);
+            }
+            return Randoms;
         }
     }
 }

@@ -10,6 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Details</title>
+    <link href="~/css/SlideShow.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -21,15 +22,15 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@car.Thumbnail" alt="..." /></div>
                     <div class="col-md-6">
-                        
+
                         <h1 class="display-5 fw-bolder">@car.Name</h1>
                         <div class="fs-5 mb-5">
                             <h5>Rent/Day: $@car.RentalCost</h5>
                             <h5>Model Year: @car.ModelYear</h5>
                             <h5>City: @car.City</h5>
                         </div>
-                        
-                        
+
+
                         <p class="fs-5 mb-5">@car.Description</p>
                         <div class="d-flex">
                             <form>
@@ -48,16 +49,75 @@
                                         <a asp-page="./Edit" asp-route-id="@Model.Car.ID" style="text-decoration:none; color:black">Edit</a>
                                     </button>
                                 }
-                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                                <i class="bi-cart-fill me-1"></i>
-                                <a asp-page="./Index" style="text-decoration:none; color:black">Back to List</a>
-                            </button>
+                                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    <a asp-page="./Index" style="text-decoration:none; color:black">Back to List</a>
+                                </button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="gallery">
+            <div class="carousel">
+
+                <input type="radio" id="image1" name="gallery-control" checked>
+                <input type="radio" id="image2" name="gallery-control">
+                <input type="radio" id="image3" name="gallery-control">
+                <input type="radio" id="image4" name="gallery-control">
+
+
+                <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control" />
+
+                <div class="wrap">
+
+                    <figure>
+                        <label for="fullscreen">
+                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image3" />
+                        </label>
+                    </figure>
+
+                    <figure>
+                        <label for="fullscreen">
+                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image2" />
+                        </label>
+                    </figure>
+
+                    <figure>
+                        <label for="fullscreen">
+                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image3" />
+                        </label>
+                    </figure>
+
+                    <figure>
+                        <label for="fullscreen">
+                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image4" />
+                        </label>
+                    </figure>
+                </div>
+
+                <div class="thumbnails">
+
+                    <div class="slider"><div class="indicator"></div></div>
+
+                    <label for="image1" class="thumb" style="background-image: url('https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg')"></label>
+
+                    <label for="image2" class="thumb" style="background-image: url('https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg')"></label>
+
+                    <label for="image3" class="thumb" style="background-image: url('https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg')"></label>
+
+                    <label for="image4" class="thumb" style="background-image: url('https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg')"></label>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
         <!-- Related items section-->
         <section class="py-5 bg-light">
             <div class="container px-4 px-lg-5 mt-5">
@@ -76,7 +136,7 @@
                                         <!-- Product name-->
                                         <h5 class="fw-bolder">@Model.items[i].Name</h5>
                                         Model: @Model.items[i].ModelYear
-                                       
+
                                     </div>
                                     <div class="text-center">
                                         <!-- Product price-->
