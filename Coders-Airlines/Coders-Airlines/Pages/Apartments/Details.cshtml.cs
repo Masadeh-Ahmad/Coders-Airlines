@@ -14,6 +14,7 @@ namespace Coders_Airlines.Pages.Apartments
     public class DetailsModel : PageModel
     {
         private readonly IApartment _apartment;
+        public List<Apartment> items { get; set; }
 
         public DetailsModel(IApartment apartment)
         {
@@ -30,6 +31,7 @@ namespace Coders_Airlines.Pages.Apartments
             }
 
             Apartment = await _apartment.GetApartment(id);
+            items = await _apartment.RandomApartment();
 
             if (Apartment == null)
             {

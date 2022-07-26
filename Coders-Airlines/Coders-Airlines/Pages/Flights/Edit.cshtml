@@ -6,13 +6,13 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" style="margin: auto; width: 500px;">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Flight.ID" />
+            <input type="hidden" asp-for="Flight.ID"/>
             <div class="form-group">
                 <label asp-for="Flight.From" class="control-label"></label>
-                <select asp-for="Flight.From" class="form-control" >
-                    @foreach(var city in @Model.Cities)
+                <select asp-for="Flight.From" class="form-control">
+                    @foreach (var city in @Model.Cities)
                     {
                         <option>@city.Name</option>
                     }
@@ -21,8 +21,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Flight.To" class="control-label"></label>
-               <select asp-for="Flight.To" class="form-control" >
-                    @foreach(var city in @Model.Cities)
+                <select asp-for="Flight.To" class="form-control">
+                    @foreach (var city in @Model.Cities)
                     {
                         <option>@city.Name</option>
                     }
@@ -31,15 +31,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Flight.DepartureDate" class="control-label">Departure Date</label>
-                <input asp-for="Flight.DepartureDate" class="form-control" />
+                <input asp-for="Flight.DepartureDate" class="form-control"/>
                 <span asp-validation-for="Flight.DepartureDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Flight.ArrivalDate" class="control-label">Arrival Date</label>
-                <input asp-for="Flight.ArrivalDate" class="form-control" />
+                <input asp-for="Flight.ArrivalDate" class="form-control"/>
                 <span asp-validation-for="Flight.ArrivalDate" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="Flight.ClassType" class="control-label">Class Type</label>
                 <select asp-for="Flight.ClassType" class="form-control">
@@ -51,12 +51,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Flight.SeatsLeft" class="control-label">Seats Left</label>
-                <input asp-for="Flight.SeatsLeft" class="form-control" />
+                <input asp-for="Flight.SeatsLeft" class="form-control"/>
                 <span asp-validation-for="Flight.SeatsLeft" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Flight.Price" class="control-label"></label>
-                <input asp-for="Flight.Price" class="form-control" />
+                <input asp-for="Flight.Price" class="form-control"/>
                 <span asp-validation-for="Flight.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
