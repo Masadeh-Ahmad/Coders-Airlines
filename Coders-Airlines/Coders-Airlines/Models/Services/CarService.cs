@@ -60,5 +60,10 @@ namespace Coders_Airlines.Models.Services
             }
             return Randoms;
         }
+        public async Task AddImg(CarImg carImg)
+        {
+            _context.CarImgs.Add(carImg);
+            await _context.SaveChangesAsync();
+        }
     }
 }

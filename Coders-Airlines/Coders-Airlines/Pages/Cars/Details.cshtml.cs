@@ -23,6 +23,8 @@ namespace Coders_Airlines.Pages.Cars
         }
 
         public Car Car { get; set; }
+        [BindProperty]
+        public CarImg CarImg { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -39,6 +41,12 @@ namespace Coders_Airlines.Pages.Cars
                 return NotFound();
             }
             return Page();
+        }
+        public async Task<IActionResult> OnPostAddImg(int id)
+        {
+            CarImg.CarID = id;
+            await _car.AddImg(CarImg);
+            return Redirect($"./Details/?id={id}");
         }
     }
 }
