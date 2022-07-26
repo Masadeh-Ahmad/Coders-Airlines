@@ -52,10 +52,10 @@
             </div>
             <br>
 
-            <a class="button-28" asp-page="/Profile/edit" style="text-decoration:none; color:black">Edit Profile</a>
-            <a class="button-28" asp-page="/Profile/Flighthistory" style="text-decoration:none; color:black">View Ticket History</a>
-            <a class="button-28" asp-page="/Profile/carhistory" style="text-decoration:none; color:black">View Car History</a>
-            <a class="button-28" asp-page="/Profile/apartmenthistory" style="text-decoration:none; color:black">View Apartment History</a>
+            <a asp-route-username="@User.Identity.Name" class="button-28" asp-page="/Profile/edit" style="text-decoration:none; color:black">Edit Profile</a>
+            <a asp-route-username="@User.Identity.Name" class="button-28" asp-page="/Profile/Flighthistory" style="text-decoration:none; color:black">View Ticket History</a>
+            <a asp-route-username="@User.Identity.Name" class="button-28" asp-page="/Profile/carhistory" style="text-decoration:none; color:black">View Car History</a>
+            <a asp-route-username="@User.Identity.Name" class="button-28" asp-page="/Profile/apartmenthistory" style="text-decoration:none; color:black">View Apartment History</a>
 
 
         </div> 
