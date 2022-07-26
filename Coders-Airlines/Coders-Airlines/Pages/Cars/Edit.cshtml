@@ -17,7 +17,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" style="margin: auto; width: 500px;">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Car.ID" />
             <div class="form-group">
@@ -56,8 +56,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Car.City" class="control-label"></label>
-                <select asp-for="Car.City" class="form-control" >
-                    @foreach(var city in @Model.Cities)
+                <select asp-for="Car.City" class="form-control">
+                    @foreach (var city in @Model.Cities)
                     {
                         <option>@city.Name</option>
                     }
@@ -69,7 +69,7 @@
                 <input asp-for="Car.Description" class="form-control" />
                 <span asp-validation-for="Car.Description" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="Car.Thumbnail" class="control-label"></label>
                 <input asp-for="Car.Thumbnail" class="form-control" />

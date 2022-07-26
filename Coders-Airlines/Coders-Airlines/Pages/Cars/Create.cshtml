@@ -18,21 +18,21 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" style="margin: auto; width: 500px;">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Car.Name" class="control-label"></label>
-                <input asp-for="Car.Name" class="form-control" />
+                <input asp-for="Car.Name" class="form-control" required/>
                 <span asp-validation-for="Car.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Car.ModelYear" class="control-label">Model Year</label>
-                <input asp-for="Car.ModelYear" class="form-control" />
+                <input asp-for="Car.ModelYear" class="form-control" required/>
                 <span asp-validation-for="Car.ModelYear" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Car.Type" class="control-label"></label>
-                <select asp-for="Car.Type" class="form-control">
+                <select asp-for="Car.Type" class="form-control" required>
                     <option value="0">CompactSedan</option>
                     <option value="1">Sedan</option>
                     <option value="2">Hatchback</option>
@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Car.FuelType" class="control-label">Fuel Type</label>
-                <select asp-for="Car.FuelType" class="form-control">
+                <select asp-for="Car.FuelType" class="form-control" required>
                     <option value="0">Gasoline</option>
                     <option value="1">Hybrid</option>
                     <option value="2">Electric</option>
@@ -51,13 +51,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Car.RentalCost" class="control-label">Rental Cost</label>
-                <input asp-for="Car.RentalCost" class="form-control" />
+                <input asp-for="Car.RentalCost" class="form-control" required/>
                 <span asp-validation-for="Car.RentalCost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Car.City" class="control-label"></label>
-                <select asp-for="Car.City" class="form-control" >
-                    @foreach(var city in @Model.Cities)
+                <select asp-for="Car.City" class="form-control" required>
+                    @foreach (var city in @Model.Cities)
                     {
                         <option>@city.Name</option>
                     }
@@ -66,25 +66,25 @@
             </div>
             <div class="form-group">
                 <label asp-for="Car.Description" class="control-label"></label>
-                <input asp-for="Car.Description" class="form-control" />
+                <input asp-for="Car.Description" class="form-control" required/>
                 <span asp-validation-for="Car.Description" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="Car.Thumbnail" class="control-label"></label>
-                <input asp-for="Car.Thumbnail" class="form-control" />
+                <input asp-for="Car.Thumbnail" class="form-control"/>
                 <span asp-validation-for="Car.Thumbnail" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+            <div>
+                <a asp-page="Index">Back to List</a>
+            </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
