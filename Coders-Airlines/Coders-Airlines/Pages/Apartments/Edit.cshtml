@@ -20,6 +20,8 @@
     <hr />
     <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Apartment.ID" />
+
         <div class="mb-3 mt-3">
             <div style="display:grid; grid-template-columns: 50% 50%" class="row">
                 <div class="col">

@@ -16,105 +16,99 @@
 
     @if (@Model.Car != null)
     {
-        var car = Model.Car;
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@car.Thumbnail" alt="..." /></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="@Model.Car.Thumbnail" alt="..." /></div>
                     <div class="col-md-6">
 
-                        <h1 class="display-5 fw-bolder">@car.Name</h1>
+                        <h1 class="display-5 fw-bolder">@Model.Car.Name</h1>
                         <div class="fs-5 mb-5">
-                            <h5>Rent/Day: $@car.RentalCost</h5>
-                            <h5>Model Year: @car.ModelYear</h5>
-                            <h5>City: @car.City</h5>
+                            <h5>Rent/Day: $@Model.Car.RentalCost</h5>
+                            <h5>Model Year: @Model.Car.ModelYear</h5>
+                            <h5>City: @Model.Car.City</h5>
                         </div>
 
 
-                        <p class="fs-5 mb-5">@car.Description</p>
+                        <p class="fs-5 mb-5">@Model.Car.Description</p>
                         <div class="d-flex">
                             <form method="post">
                                 @if (User.Identity.IsAuthenticated && (User.IsInRole("user") || User.IsInRole("administrator")))
                                 {
-                                    <a asp-page="./CarRental" asp-route-id="@Model.Car.ID"  class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Rent</a>
+                                    <a asp-page="./CarRental" asp-route-id="@Model.Car.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Rent</a>
                                 }
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
                                 {
-                                   <a asp-page="./Edit" asp-route-id="@Model.Car.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Edit</a> 
-                                   
-                                   <div class="d-flex" style="margin:10px 0 10px 0"> 
-                                       
-                                       <input asp-for="@Model.CarImg.URL"  class="form-control">
-                                       <button type="submit" value="AddImg" class="btn btn-outline-dark flex-shrink-0" asp-page-handler="AddImg" asp-route-id="@Model.Car.ID">Add Image</button>
-                               </div>
-                                  
+                                    <a asp-page="./Edit" asp-route-id="@Model.Car.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Edit</a>
+
+                                    <div class="d-flex" style="margin:10px 0 10px 0">
+
+                                        <input asp-for="@Model.CarImg.URL" class="form-control">
+                                        <button type="submit" value="AddImg" class="btn btn-outline-dark flex-shrink-0" asp-page-handler="AddImg" asp-route-id="@Model.Car.ID">Add Image</button>
+                                    </div>
+
                                 }
-                                   <a asp-page="./Index" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Back to List</a>
-                                   
+                                <a asp-page="./Index" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Back to List</a>
+
                             </form>
-                           
+
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="gallery">
-            <div class="carousel">
+        @if (Model.Imgs != null)
+        {
+            <section class="gallery">
+                <div class="carousel">
 
-                <input type="radio" id="image1" name="gallery-control" checked>
-                <input type="radio" id="image2" name="gallery-control">
-                <input type="radio" id="image3" name="gallery-control">
-                <input type="radio" id="image4" name="gallery-control">
+                    @for (int i = 0; i < Model.Imgs.Count; i++)
+                    {
+                        string s = "image" + Model.Imgs[i].ID;
+                        @if (i == 0)
+                        {
+                            <input type="radio" id="@s" name="gallery-control" checked>
+                        }
+                        else
+                        {
+                            <input type="radio" id="@s" name="gallery-control">
+
+                        }
+
+                    }
 
 
-                <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control" />
+                    <input type="checkbox" id="fullscreen" name="gallery-fullscreen-control" />
 
-                <div class="wrap">
+                    <div class="wrap">
+                        @foreach (var item in Model.Imgs)
+                        {
+                            <figure>
+                                <label for="fullscreen">
+                                    <img src="@item.URL" alt="image3" />
+                                </label>
+                            </figure>
+                        }
+                    </div>
 
-                    <figure>
-                        <label for="fullscreen">
-                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image3" />
-                        </label>
-                    </figure>
 
-                    <figure>
-                        <label for="fullscreen">
-                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image2" />
-                        </label>
-                    </figure>
+                    <div class="thumbnails">
+                        <div class="slider"><div class="indicator"></div></div>
 
-                    <figure>
-                        <label for="fullscreen">
-                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image3" />
-                        </label>
-                    </figure>
 
-                    <figure>
-                        <label for="fullscreen">
-                            <img src="https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg" alt="image4" />
-                        </label>
-                    </figure>
+                        @foreach (var item in Model.Imgs)
+                        {
+                            string s = "image" + @item.ID;
+                            <label for="@s" class="thumb" style="background-image: url('@item.URL')"></label>
+
+                        }
+
+                    </div>
                 </div>
+            </section>
 
-                <div class="thumbnails">
-
-                    <div class="slider"><div class="indicator"></div></div>
-
-                    <label for="image1" class="thumb" style="background-image: url('https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg')"></label>
-
-                    <label for="image2" class="thumb" style="background-image: url('https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg')"></label>
-
-                    <label for="image3" class="thumb" style="background-image: url('https://www.aveliving.com/AVE/media/Property_Images/Florham%20Park/hero/flor-apt-living-(2)-hero.jpg?ext=.jpg')"></label>
-
-                    
-                </div>
-            </div>
-        </section>
-
-
-
-
+        }
 
 
         <!-- Related items section-->

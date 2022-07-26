@@ -65,5 +65,10 @@ namespace Coders_Airlines.Models.Services
             _context.CarImgs.Add(carImg);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<CarImg>> GetImgs(int ?id)
+        {
+            return await _context.CarImgs.Where(x => x.CarID == id).ToListAsync();
+        }
     }
 }
