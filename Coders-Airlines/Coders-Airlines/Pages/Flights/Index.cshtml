@@ -63,7 +63,7 @@
                         {
                             foreach (var Data in Model.Flights)
                             {
-                                <tr onclick="window.location = './Flights/Details/?id=@Data.ID'" ; style="cursor: pointer;">
+                                <tr onclick="window.location = '/Flights/Details/?id=@Data.ID'" ; style="cursor: pointer;">
                                     <td>@Data.ID</td>
                                     <td>@Data.ClassType</td>
                                     <td>@Data.From</td>
