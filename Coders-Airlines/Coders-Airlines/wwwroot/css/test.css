@@ -1,39 +1,39 @@
 ﻿
 @import url('https://font.googleleapis.com/css?familly=Poppins:200,300,400,500,600,700,800,900&display=swap');
 
-section {
+#sec {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom,#ece6de,#3d0981);
+    background: linear-gradient(to bottom,rgb(128, 128, 128),#F2DF3A);
 }
 
-    section .color {
+    #sec .color {
         position: absolute;
         filter: blur(200px);
     }
 
-        section .color:nth-child(1) {
+        #sec .color:nth-child(1) {
             top: -360px;
             width: 800px;
             height: 600px;
-            background: #3d0981;
+            background: #F2DF3A;
         }
 
-        section .color:nth-child(2) {
-            bottom: -150px;
+        #sec .color:nth-child(2) {
+            bottom: 200px;
             left: 100px;
-            width: 600px;
-            height: 800px;
-            background: #df9712;
+            width: 400px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        section .color:nth-child(3) {
-            bottom: 50px;
+        #sec .color:nth-child(3) {
+            bottom: 200px;
             right: 100px;
             width: 400px;
-            height: 500px;
-            background: #1512df;
+            height: 400px;
+            background: #ffc800;
         }
 
 .box {
@@ -70,16 +70,16 @@ section {
 }
 
 .box .square:nth-child(2) {
-    top: 150;
-    left: -100px;
+    top: 150px;
+    left: -200px;
     width: 120px;
     height: 120px;
     z-index: 2;
 }
 
 .box .square:nth-child(3) {
-    bottom: -80px;
-    right: -60px;
+    bottom: 140px;
+    right: -160px;
     width: 80px;
     height: 80px;
     z-index: 2;
@@ -98,7 +98,36 @@ section {
     width: 60px;
     height: 60px;
 }
-
+#container1 {
+    position: relative;
+    width: 800px;
+    min-height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+#container2 {
+    position: relative;
+    width: 400px;
+    min-height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
 
 .form {
     position: relative;

@@ -3,10 +3,9 @@
 @model Coders_Airlines.Pages.Auth.SignUpModel
 @{
 }
-<header>
-<link rel="stylesheet" href="~/css/test.css" />
-</header>
-<section>
+<head><link rel="stylesheet" href="~/css/test.css" /></head>
+
+<section  id="sec">
     <div class="color"></div>
     <div class="color"></div>
     <div class="color"></div>
@@ -17,27 +16,45 @@
         <div class="square" Style="--i:3;"></div>
         <div class="square" Style="--i:4;"></div>
 
-        <div>
+        <div class="container" id="container1">
             <div class="form" >
                 <form method="post">
                     <h2>Sign Up</h2>
-                    <div class="inputbox">
-                        <input name="UserName" type="text" placeholder="UserName" required>
+                    <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                        <div class="col">
+                            <div class="inputbox">
+                                <input name="UserName" type="text" placeholder="UserName" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="inputbox">
+                                <input name="Email" type="email" placeholder="Email" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="inputbox">
-                        <input name="Email" type="email" placeholder="Email" required>
+                    <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                        <div class="col">
+                            <div class="inputbox">
+                                <input name="Password" type="password" placeholder="Password" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="inputbox">
+                                <input name="PhoneNumber" type="text" placeholder="PhoneNumber" required>
+                            </div>
+                        </div>
                     </div>
-                    <div class="inputbox">
-                        <input name="Password" type="password" placeholder="Password" required>
-                    </div>
-                    <div class="inputbox">
-                        <input name="PhoneNumber" type="text" placeholder="PhoneNumber" required>
-                    </div>
-                    <div class="inputbox">
-                        <input name="DateOfBirth" type="Date" placeholder="DateOfBirth" required>
-                    </div>
-                    <div class="inputbox">
-                        <input name="Gender" type="text" placeholder="Gender" required>
+                    <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                        <div class="col">
+                            <div class="inputbox">
+                                <input name="DateOfBirth" type="Date" placeholder="DateOfBirth" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="inputbox">
+                                <input name="Gender" type="text" placeholder="Gender" required>
+                            </div>
+                        </div>
                     </div>
                     <div asp-validation-summary="All"></div>
                     <div class="inputbox">
@@ -49,5 +66,3 @@
         </div>
     </div>
 </section>
-
-<div asp-validation-summary="All"></div>
