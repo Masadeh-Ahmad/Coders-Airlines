@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
 using Coders_Airlines.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Coders_Airlines.Pages.Apartments
 {
+    [Authorize(Roles="administrator")]
     public class CreateModel : PageModel
     {
         private readonly IApartment _apartment;

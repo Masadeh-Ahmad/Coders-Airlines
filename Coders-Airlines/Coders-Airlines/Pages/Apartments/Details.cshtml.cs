@@ -42,7 +42,15 @@ namespace Coders_Airlines.Pages.Apartments
             }
 
             Apartment = await _apartment.GetApartment(id);
-            items = await _apartment.RandomApartment();
+            try
+            {
+                items = await _apartment.RandomApartment();
+
+            }
+            catch
+            {
+                items = null;
+            }
             Imgs = await _apartment.GetImgs(id);
             if (rent != null)
             {
@@ -54,6 +62,17 @@ namespace Coders_Airlines.Pages.Apartments
                 return NotFound();
             }
             return Page();
+        }
+        public async Task<IActionResult> OnGetDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await _apartment.DeleteApartment(id);
+
+            return RedirectToPage("./Index");
         }
         public async Task<IActionResult> OnPostAddImg(int id)
         {

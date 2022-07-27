@@ -40,6 +40,7 @@
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
                                 {
                                     <a asp-page="./Edit" asp-route-id="@Model.Car.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Edit</a>
+                                    <a asp-page-handler="Delete" asp-page="Details" asp-route-id="@Model.Car.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Delete</a>
 
                                     <div class="d-flex" style="margin:10px 0 10px 0">
 
@@ -53,31 +54,31 @@
                             </form>
 
                         </div>
-                        @if(@Model.Rent)
+                        @if (@Model.Rent)
                         {
                             <form method="post" style="margin:20px">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
-                                    <label  class="control-label">From</label>
+                                    <label class="control-label">From</label>
                                     <input asp-for="@Model.CarRental.From" class="form-control" />
-                
+
                                 </div>
                                 <div class="form-group">
-                                    <label  class="control-label">To</label>
+                                    <label class="control-label">To</label>
                                     <input asp-for="@Model.CarRental.To" class="form-control" />
 
                                 </div>
 
-                                    <input class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;margin:10px"  type="submit" value="Check" class="btn btn-primary" asp-page-handler="check" asp-route-id="@Model.Car.ID" />
+                                <input class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;margin:10px" type="submit" value="Check" class="btn btn-primary" asp-page-handler="check" asp-route-id="@Model.Car.ID" />
 
-                                
-        
-                                @if(Model.CarRental != null)
+
+
+                                @if (Model.CarRental != null)
                                 {
-                                    if(Model.CarRental.Price !=0)
+                                    if (Model.CarRental.Price != 0)
                                     {
                                         <label asp-for="@Model.CarRental.Price" class="control-label"></label>
-                                        <span>"$@Model.CarRental.Price" </span>             
+                                        <span>"$@Model.CarRental.Price" </span>
                                         <input type="submit" value="Rent" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;" asp-route-id="@Model.Car.ID" />
                                     }
                                     else
@@ -87,7 +88,7 @@
                                 }
                             </form>
                         }
-                        
+
                     </div>
                 </div>
             </div>
@@ -102,7 +103,7 @@
                     {
                         string s = $"image{i + 1}";
                         ;
-                    @if (i == 0)
+                        @if (i == 0)
                         {
                             <input type="radio" id="@s" name="gallery-control" checked>
                         }
@@ -122,7 +123,7 @@
                         {
                             <figure>
                                 <label for="fullscreen">
-                                    <img src="@item.URL"  />
+                                    <img src="@item.URL" />
                                 </label>
                             </figure>
                         }
@@ -147,43 +148,46 @@
         }
 
 
-        <!-- Related items section-->
-        <section class="py-5 bg-light">
-            <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fw-bolder mb-4">Suggested For You</h2>
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        @if (Model.items != null && Model.items.Count != 0)
+        {
+            <!-- Related items section-->
+            <section class="py-5 bg-light">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <h2 class="fw-bolder mb-4">Suggested For You</h2>
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                    @for (int i = 0; i < 4; i++)
-                    {
-                        <div class="col mb-5">
-                            <div class="card h-100">
-                                <!-- Product image-->
-                                <img style="height:200px" class="card-img-top" src="@Model.items[i].Thumbnail" alt="..." />
-                                <!-- Product details-->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <!-- Product name-->
-                                        <h5 class="fw-bolder">@Model.items[i].Name</h5>
-                                        Model: @Model.items[i].ModelYear
+                        @for (int i = 0; i < 4; i++)
+                        {
+                            <div class="col mb-5">
+                                <div class="card h-100">
+                                    <!-- Product image-->
+                                    <img style="height:200px" class="card-img-top" src="@Model.items[i].Thumbnail" alt="..." />
+                                    <!-- Product details-->
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <!-- Product name-->
+                                            <h5 class="fw-bolder">@Model.items[i].Name</h5>
+                                            Model: @Model.items[i].ModelYear
 
+                                        </div>
+                                        <div class="text-center">
+                                            <!-- Product price-->
+                                            City: @Model.items[i].City
+                                        </div>
                                     </div>
-                                    <div class="text-center">
-                                        <!-- Product price-->
-                                        City: @Model.items[i].City
+                                    <!-- Product actions-->
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center"><a asp-page="/Cars/Details" asp-route-id="@Model.items[i].ID" class="btn btn-outline-dark mt-auto">View Details</a></div>
                                     </div>
-                                </div>
-                                <!-- Product actions-->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a asp-page="/Cars/Details" asp-route-id="@Model.items[i].ID" class="btn btn-outline-dark mt-auto">View Details</a></div>
                                 </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
+        }
     }
 
-</body>
+    </body>
 </html>

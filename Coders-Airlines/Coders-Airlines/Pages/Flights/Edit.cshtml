@@ -13,10 +13,9 @@
     <link rel="stylesheet" href="~/css/form.css" />
 
 </head>
-<body style="margin:100px">
+<body style="margin:100px 100px 0 100px">
 
-
-    <h1>Edit Flight</h1>
+    <h1 style="text-align: center">Edit Flight</h1>
     <hr />
 
     <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
@@ -63,7 +62,7 @@
         </div>
 
         <div class="mb-3 mt-3">
-            <label asp-for="Flight.ClassType" class="control-label"></label>
+            <label class="control-label">Class Type</label>
             <select asp-for="Flight.ClassType" class="form-control" required>
                 <option value="0">Economy</option>
                 <option value="1">Bussiness</option>
@@ -73,7 +72,7 @@
         </div>
 
         <div class="mb-3 mt-3">
-            <label asp-for="Flight.SeatsLeft" class="control-label"></label>
+            <label class="control-label"> Seats Left</label>
             <input asp-for="Flight.SeatsLeft" class="form-control" required />
             <span asp-validation-for="Flight.SeatsLeft" class="text-danger"></span>
         </div>

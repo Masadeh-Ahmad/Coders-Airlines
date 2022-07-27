@@ -14,16 +14,19 @@
 </head>
 <body style="margin:100px 100px 0 100px">
 
+    <h1 style="align-content:center; text-align:center; margin-bottom:50px">
+        Car Rental History
+    </h1>
     @{
         ViewData["Title"] = "Display Data";
-        string[] TableHeaders = new string[] 
+        string[] TableHeaders = new string[]
         {
                         "From",
                         "To",
                         "Car's Name",
                         "City",
                         "Price"
-        };
+            };
     }
 
     <div class="table">
@@ -51,7 +54,7 @@
                                 <td>@Data.To</td>
                                 <td>@Data.Car.Name</td>
                                 <td>@Data.Car.City</td>
-                                <td>&#36;@System.Math.Round((Data.Price),2)</td>
+                                <td>&#36;@System.Math.Round((Data.Price), 2)</td>
                             </tr>
                         }
                     }

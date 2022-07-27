@@ -26,6 +26,11 @@ namespace Coders_Airlines.Controllers
             return View();
         }
 
+        public IActionResult AccessDenied()
+        {
+            return RedirectToPage("/Index");
+        }
+
         /// <summary>
         /// This checks if the user exists.
         /// </summary>

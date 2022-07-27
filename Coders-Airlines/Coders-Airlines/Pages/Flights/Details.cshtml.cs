@@ -35,7 +35,17 @@ namespace Coders_Airlines.Pages.Flights
         public Booking Booking { get; set; }
         public bool Rent { get; set; }
 
+        public async Task<IActionResult> OnGetDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            await _flight.DeleteFlight(id);
+
+            return RedirectToPage("./Index");
+        }
         public async Task<IActionResult> OnGetAsync(int? id, int? rent)
         {
             if (id == null)
@@ -44,7 +54,15 @@ namespace Coders_Airlines.Pages.Flights
             }
 
             Flight = await _flight.GetFlight(id);
-            items = await _car.RandomCar();
+            try
+            {
+                items = await _car.RandomCar();
+            }
+            catch
+            {
+                items = null;
+            }
+            
             if (Flight == null)
             {
                 return NotFound();

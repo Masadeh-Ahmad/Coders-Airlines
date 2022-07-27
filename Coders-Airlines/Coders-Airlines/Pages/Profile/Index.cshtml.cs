@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Coders_Airlines.Auth;
 using Coders_Airlines.Auth.Interfaces;
 using Coders_Airlines.Auth.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Coders_Airlines.Pages.Profile
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly IUser UserService;

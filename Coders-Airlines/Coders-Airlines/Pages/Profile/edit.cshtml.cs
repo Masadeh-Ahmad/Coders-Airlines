@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Coders_Airlines.Auth.Interfaces;
 using Coders_Airlines.Auth.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,6 +13,7 @@ using Microsoft.Identity;
 
 namespace Coders_Airlines.Pages.Profile
 {
+    [Authorize]
     public class editModel : PageModel
     {
         private readonly IUser _userService;

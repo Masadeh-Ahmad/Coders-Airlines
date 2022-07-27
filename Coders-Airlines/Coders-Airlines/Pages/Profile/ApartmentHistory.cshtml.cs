@@ -1,4 +1,5 @@
 using Coders_Airlines.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Coders_Airlines.Pages.Profile
 {
+    [Authorize]
+
     public class ApartmentHistoryModel : PageModel
     {
         private readonly Coders_Airlines.Data.AirlinesDbContext _context;
