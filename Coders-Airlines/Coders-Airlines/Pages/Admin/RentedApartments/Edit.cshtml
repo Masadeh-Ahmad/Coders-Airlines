@@ -5,50 +5,78 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
 
-<h4>ApartmentRental</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ApartmentRental.ID" />
-            <div class="form-group">
-                <label asp-for="ApartmentRental.ApartmentID" class="control-label"></label>
-                <input asp-for="ApartmentRental.ApartmentID" class="form-control">
-                <span asp-validation-for="ApartmentRental.ApartmentID" class="text-danger"></span>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="~/css/form.css" />
+
+</head>
+<body>
+
+    <h2>Edit</h2>
+
+    <h4>ApartmentRental</h4>
+    <hr />
+
+    <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ApartmentRental.ID" />
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label asp-for="ApartmentRental.ApartmentID" class="control-label"></label>
+                    <input asp-for="ApartmentRental.ApartmentID" class="form-control">
+                    <span asp-validation-for="ApartmentRental.ApartmentID" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="ApartmentRental.User.UserName" class="control-label"></label>
+                    <input asp-for="ApartmentRental.User.UserName" class="form-control">
+                    <span asp-validation-for="ApartmentRental.User.UserName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ApartmentRental.User.UserName" class="control-label"></label>
-                <input asp-for="ApartmentRental.User.UserName" class="form-control">
-                <span asp-validation-for="ApartmentRental.User.UserName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label asp-for="ApartmentRental.From" class="control-label"></label>
+                    <input asp-for="ApartmentRental.From" class="form-control" />
+                    <span asp-validation-for="ApartmentRental.From" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="ApartmentRental.To" class="control-label"></label>
+                    <input asp-for="ApartmentRental.To" class="form-control" />
+                    <span asp-validation-for="ApartmentRental.To" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ApartmentRental.From" class="control-label"></label>
-                <input asp-for="ApartmentRental.From" class="form-control" />
-                <span asp-validation-for="ApartmentRental.From" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ApartmentRental.To" class="control-label"></label>
-                <input asp-for="ApartmentRental.To" class="form-control" />
-                <span asp-validation-for="ApartmentRental.To" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+
+
+            <div class="col">
                 <label asp-for="ApartmentRental.Price" class="control-label"></label>
                 <input asp-for="ApartmentRental.Price" class="form-control" />
                 <span asp-validation-for="ApartmentRental.Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="mb-3 mt-3">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-page="./AdminApartmentRental">Back to List</a>
-</div>
+            <div>
+                <a asp-page="./AdminApartmentRental">Back to List</a>
+            </div>
+    </form>
+
+</body>
+</html>
+
+
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
