@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Flight Details</title>
     <link href="~/css/SlideShow.css" rel="stylesheet" />
 </head>
 <body>
@@ -32,7 +32,7 @@
                         <div class="fs-5 mb-5">
                             <h5>Price: $@flight.Price</h5>
                             <h5>Departure: @flight.DepartureDate</h5>
-                            <h5>Departure: @flight.DepartureDate</h5>
+                            <h5>Arrival: @flight.ArrivalDate</h5>
 
                         </div>
 
@@ -49,6 +49,8 @@
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
                                 {
                                     <a asp-page="./Edit" asp-route-id="@Model.Flight.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Edit</a>
+                                    <a asp-page-handler="Delete" asp-page="Details" asp-route-id="@Model.Flight.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Delete</a>
+
                                 }
 
                                 <a asp-page="./Index" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Back to List</a>
@@ -60,7 +62,7 @@
                             <form method="post">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
-                                    <label  class="control-label">Num Of Bags</label>
+                                    <label class="control-label">Num Of Bags</label>
                                     <select asp-for="Booking.NumOfBags" class="form-control">
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
@@ -69,11 +71,11 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label  class="control-label">Num Of Seats</label>
+                                    <label class="control-label">Num Of Seats</label>
                                     <input asp-for="@Model.Booking.NumOfSeats" class="form-control" required />
 
                                 </div>
-                                <input type="submit" value="Check"  class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;margin:10px" asp-page-handler="check" asp-route-id="@Model.Flight.ID" />
+                                <input type="submit" value="Check" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;margin:10px" asp-page-handler="check" asp-route-id="@Model.Flight.ID" />
 
                                 @if (Model.Booking != null)
                                 {
@@ -100,65 +102,46 @@
             </div>
         </section>
 
-
-
-
-
     }
 
 
-    <!-- Related items section-->
-    <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder mb-4">Suggested For You</h2>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    @if (Model.items != null && Model.items.Count != 0)
+    {
+        <!-- Related items section-->
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Suggested For You</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                @for (int i = 0; i < 4; i++)
-                {
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img style="height:200px" class="card-img-top" src="@Model.items[i].Thumbnail" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">@Model.items[i].Name</h5>
-                                    Model: @Model.items[i].ModelYear
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                <img style="height:200px" class="card-img-top" src="@Model.items[i].Thumbnail" alt="..." />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">@Model.items[i].Name</h5>
+                                        Model: @Model.items[i].ModelYear
 
+                                    </div>
+                                    <div class="text-center">
+                                        <!-- Product price-->
+                                        City: @Model.items[i].City
+                                    </div>
                                 </div>
-                                <div class="text-center">
-                                    <!-- Product price-->
-                                    City: @Model.items[i].City
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a asp-page="/Cars/Details" asp-route-id="@Model.items[i].ID" class="btn btn-outline-dark mt-auto">View Details</a></div>
                                 </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a asp-page="/Cars/Details" asp-route-id="@Model.items[i].ID" class="btn btn-outline-dark mt-auto">View Details</a></div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
-        </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </section>
     }
 
 </body>

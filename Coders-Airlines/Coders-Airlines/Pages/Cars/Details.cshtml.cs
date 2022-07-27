@@ -41,7 +41,14 @@ namespace Coders_Airlines.Pages.Cars
             }
 
             Car = await _car.GetCar(id);
-            items = await _car.RandomCar();
+            try
+            {
+                items = await _car.RandomCar();
+            }
+            catch
+            {
+                items = null;
+            }
             Imgs = await _car.GetImgs(id);
             if(rent != null)
             {
@@ -55,6 +62,17 @@ namespace Coders_Airlines.Pages.Cars
             return Page();
         }
         
+        public async Task<IActionResult> OnGetDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await _car.DeleteCar(id);
+
+            return RedirectToPage("./Index");
+        }
         public async Task<IActionResult> OnPostAddImg(int id)
         {
             CarImg.CarID = id;

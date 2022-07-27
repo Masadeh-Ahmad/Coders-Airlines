@@ -64,7 +64,7 @@ namespace Coders_Airlines
             // new for Cookies auth
             services.ConfigureApplicationCookie(options =>
             {
-                options.AccessDeniedPath = "/Index/Index";
+                options.AccessDeniedPath = "/Auth/AccessDenied";
             });
 
             // Differences between JWT and cookies 

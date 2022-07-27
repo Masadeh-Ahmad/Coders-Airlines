@@ -11,102 +11,101 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/form.css" />
-    <title>Create</title>
 </head>
-<body>
+<body style="margin:100px 100px 0 100px">
 
-<h4>Car</h4>
-<hr />
-<form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="mb-3 mt-3">
-        <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+    <h4 style="align-content:center; text-align:center">Create Car</h4>
+    <hr />
+    <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
 
-            <div class="col">
-                <label asp-for="Car.Name"></label>
-                <input asp-for="Car.Name" class="form-control" required />
-                <span asp-validation-for="Car.Name" class="text-danger"></span>
-            </div>
-            <div class="col">
-                <label>Model Year</label>
-                <input asp-for="Car.ModelYear" class="form-control" required />
-                <span asp-validation-for="Car.ModelYear" class="text-danger"></span>
-            </div>
+                <div class="col">
+                    <label asp-for="Car.Name"></label>
+                    <input asp-for="Car.Name" class="form-control" required />
+                    <span asp-validation-for="Car.Name" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label>Model Year</label>
+                    <input asp-for="Car.ModelYear" class="form-control" required />
+                    <span asp-validation-for="Car.ModelYear" class="text-danger"></span>
+                </div>
 
-        </div>
-    </div>
-
-    <div class="mb-3 mt-3">
-        <div style="display:grid; grid-template-columns: 50% 50%" class="row">
-            <div class="col">
-                <label asp-for="Car.Type"></label>
-                <select asp-for="Car.Type" class="form-control" required>
-                    <option value="0">CompactSedan</option>
-                    <option value="1">Sedan</option>
-                    <option value="2">Hatchback</option>
-                    <option value="3">SUV</option>
-                </select>
-                <span asp-validation-for="Car.Type" class="text-danger"></span>
-            </div>
-            <div class="col">
-                <label>Fuel Type</label>
-                <select asp-for="Car.FuelType" class="form-control" required>
-                    <option value="0">Gasoline</option>
-                    <option value="1">Hybrid</option>
-                    <option value="2">Electric</option>
-                </select>
-                <span asp-validation-for="Car.FuelType" class="text-danger"></span>
             </div>
         </div>
-    </div>
 
-
-    <div class="mb-3 mt-3">
-        <div style="display:grid; grid-template-columns: 50% 50%" class="row">
-            <div class="col">
-                <label>Rental Cost</label>
-                <input asp-for="Car.RentalCost" class="form-control" required />
-                <span asp-validation-for="Car.RentalCost" class="text-danger"></span>
-            </div>
-
-            <div class="col">
-                <label asp-for="Car.City" class="control-label"></label>
-                <select asp-for="Car.City" class="form-control" required>
-                    @foreach (var city in @Model.Cities)
-                    {
-                        <option>@city.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="Car.City" class="text-danger"></span>
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label asp-for="Car.Type"></label>
+                    <select asp-for="Car.Type" class="form-control" required>
+                        <option value="0">CompactSedan</option>
+                        <option value="1">Sedan</option>
+                        <option value="2">Hatchback</option>
+                        <option value="3">SUV</option>
+                    </select>
+                    <span asp-validation-for="Car.Type" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label>Fuel Type</label>
+                    <select asp-for="Car.FuelType" class="form-control" required>
+                        <option value="0">Gasoline</option>
+                        <option value="1">Hybrid</option>
+                        <option value="2">Electric</option>
+                    </select>
+                    <span asp-validation-for="Car.FuelType" class="text-danger"></span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="mb-3 mt-3">
-        <div class="form-group shadow-textarea">
-            <label>Description</label>
-            <textarea asp-for="Car.Description" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label>Rental Cost</label>
+                    <input asp-for="Car.RentalCost" class="form-control" required />
+                    <span asp-validation-for="Car.RentalCost" class="text-danger"></span>
+                </div>
+
+                <div class="col">
+                    <label asp-for="Car.City" class="control-label"></label>
+                    <select asp-for="Car.City" class="form-control" required>
+                        @foreach (var city in @Model.Cities)
+                        {
+                            <option>@city.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Car.City" class="text-danger"></span>
+                </div>
+            </div>
         </div>
-        <span asp-validation-for="Car.Description" class="text-danger"></span>
-    </div>
 
-    <div class="mb-3 mt-3">
-        <label asp-for="Car.Thumbnail" class="control-label"></label>
-        <input asp-for="Car.Thumbnail" class="form-control" />
-        <span asp-validation-for="Car.Thumbnail" class="text-danger"></span>
-    </div>
+        <div class="mb-3 mt-3">
+            <div class="form-group shadow-textarea">
+                <label>Description</label>
+                <textarea asp-for="Car.Description" class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..."></textarea>
+            </div>
+            <span asp-validation-for="Car.Description" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3 mt-3">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-    <div>
-        <a asp-page="Index">Back to List</a>
-    </div>
-</form>
+        <div class="mb-3 mt-3">
+            <label asp-for="Car.Thumbnail" class="control-label"></label>
+            <input asp-for="Car.Thumbnail" class="form-control" />
+            <span asp-validation-for="Car.Thumbnail" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+        <div>
+            <a asp-page="Index">Back to List</a>
+        </div>
+    </form>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 </body>
 </html>
