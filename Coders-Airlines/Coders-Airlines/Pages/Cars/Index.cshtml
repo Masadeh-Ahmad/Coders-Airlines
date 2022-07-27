@@ -18,10 +18,10 @@
 
 
     @{
-        string[] TableHeaders = new string[] {"ID", "Car's Name"
+        string[] TableHeaders = new string[] {
+                        "Car's Name"
                         ,"Model's Year"
                         ,"City"
-                        ,"Description"
                         ,"Fuel Type"
                         ,"Rental Cost"};
     }
@@ -75,11 +75,10 @@
                             foreach (var Data in Model.Cars)
                             {
                                 <tr onclick="window.location = '/Cars/Details/?id=@Data.ID'" ; style="cursor: pointer;">
-                                    <td>@Data.ID</td>
+
                                     <td>@Data.Name</td>
                                     <td>@Data.ModelYear</td>
                                     <td>@Data.City</td>
-                                    <td>@Data.Description</td>
                                     <td>@Data.FuelType</td>
                                     <td>&#36;@Data.RentalCost</td>
                                 </tr>
