@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Coders_Airlines.Pages.Cars;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Coders_Airlines.Models.Interfaces
@@ -18,5 +19,6 @@ namespace Coders_Airlines.Models.Interfaces
         public Task<List<Car>> RandomCar();
         public Task AddImg(CarImg carImg);
         public Task<List<CarImg>> GetImgs(int ?id);
+        public Task<List<Car>> GetCarsOnTime(Filter filter);
     }
 }
