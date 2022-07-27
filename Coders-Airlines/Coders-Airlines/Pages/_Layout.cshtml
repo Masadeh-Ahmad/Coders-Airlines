@@ -38,24 +38,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/Index/#bookings">Bookings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Index/#portfolio">Services</a></li>
                         <li class="nav-item"><a class="nav-link" asp-page="/AboutUs">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Index/#contact">Contact</a></li>
-
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item"><a asp-page="/Auth/LogIn" class="nav-link">Log In</a></li>
-                            <li class="nav-item"><a asp-page="/Auth/SignUp" class="nav-link">Sign Up</a></li>
-                        }
-                        else
-                        {
-                            <li class="nav-item"><a asp-page="/profile/index" class="nav-link">Profile</a></li>
-                            @if (User.IsInRole("administrator")) { <li class="nav-item"><a asp-page="/Admin/AdminDashboard" class="nav-link">Admin Dashboard</a></li>}
-                            
-                            <li class="nav-item"><a asp-controller="Auth" asp-action="LogOut" class="nav-link">Sign Out</a></li>
-
-                        }
-
+                        
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item"><a asp-page="/Auth/LogIn" class="nav-link">Log In</a></li>
+                        <li class="nav-item"><a asp-page="/Auth/SignUp" class="nav-link">Sign Up</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a asp-page="/profile/index" class="nav-link">Profile</a></li>
+                        <li class="nav-item"><a asp-controller="Auth" asp-action="LogOut" class="nav-link">Sign Out</a></li>
+                    }
+                    
                     </ul>
                 </div>
             </div>
