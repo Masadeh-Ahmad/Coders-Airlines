@@ -20,9 +20,13 @@ namespace Coders_Airlines.Pages.Profile
 
         [BindProperty]
         public ApplicationUser user { get; set; }
+        [BindProperty]
+        public DateTime birth { get; set; }
+
         public async Task OnGet()
         {
             user = await UserService.GetUser();
+            string birth = user.DateOfBirth.ToString("d");
         }
     }
 }
