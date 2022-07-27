@@ -44,7 +44,7 @@
 
                                     <div class="d-flex" style="margin:10px 0 10px 0">
 
-                                        <input asp-for="@Model.CarImg.URL" class="form-control">
+                                        <input asp-for="@Model.CarImg.URL" class="form-control" required>
                                         <button type="submit" value="AddImg" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;margin-left:10px;" asp-page-handler="AddImg" asp-route-id="@Model.Car.ID">Add Image</button>
                                     </div>
 
