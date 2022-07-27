@@ -44,7 +44,7 @@
                             <form>
                                 @if (User.Identity.IsAuthenticated && (User.IsInRole("user") || User.IsInRole("administrator")))
                                 {
-                                    <a asp-page="./Booking" asp-route-id="@Model.Flight.ID" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Buy Ticket</a>
+                                    <a asp-page="./Details" asp-route-id="@Model.Flight.ID" asp-route-rent="1" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black">Buy Ticket</a>
                                 }
                                 @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
                                 {
@@ -55,6 +55,46 @@
 
                             </form>
                         </div>
+                        @if (@Model.Rent)
+                        {
+                            <form method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label  class="control-label">Num Of Bags</label>
+                                    <select asp-for="Booking.NumOfBags" class="form-control">
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Tree</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label  class="control-label">Num Of Seats</label>
+                                    <input asp-for="@Model.Booking.NumOfSeats" class="form-control" required />
+
+                                </div>
+                                <input type="submit" value="Check"  class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;margin:10px" asp-page-handler="check" asp-route-id="@Model.Flight.ID" />
+
+                                @if (Model.Booking != null)
+                                {
+                                    if (Model.Booking.TotalPrice != 0)
+                                    {
+
+
+                                        <label asp-for="@Model.Booking.TotalPrice" class="control-label"></label>
+                                        <span>"@Model.Booking.TotalPrice" </span>
+
+                                        <input type="submit" value="Rent" class="btn btn-outline-dark flex-shrink-0" style="text-decoration:none; color:black;" asp-route-id="@Model.Flight.ID" />
+
+
+                                    }
+                                    else
+                                    {
+                                        <span>You can't Book this Flight </span>
+                                    }
+                                }
+                            </form>
+                        }
                     </div>
                 </div>
             </div>

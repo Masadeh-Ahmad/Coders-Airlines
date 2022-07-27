@@ -1,5 +1,6 @@
 ﻿using Coders_Airlines.Data;
 using Coders_Airlines.Models.Interfaces;
+using Coders_Airlines.Pages.Cars;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,29 @@ namespace Coders_Airlines.Models.Services
         public async Task<List<CarImg>> GetImgs(int ?id)
         {
             return await _context.CarImgs.Where(x => x.CarID == id).ToListAsync();
+        }
+        public async Task<List<Car>> GetCarsOnTime(Filter filter)
+        {
+            var cars = await GetCars();
+            var filteredCars = new List<Car>();
+            bool available = true;
+            foreach(var car in cars)
+            {
+                List<CarRental> rentals = await _context.CarRentals.Where(x => x.CarID == car.ID).ToListAsync();
+                foreach (var item in rentals)
+                {
+                    if (filter.From < item.To && item.From < filter.To) { available = false; }
+                }
+                if (available)
+                {
+                    filteredCars.Add(car);
+                }
+                else
+                {
+                    available = true;
+                }
+            }
+            return filteredCars;
         }
     }
 }

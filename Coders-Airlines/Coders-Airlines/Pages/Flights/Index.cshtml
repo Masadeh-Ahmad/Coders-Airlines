@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css" />
     <title>Page Title</title>
 </head>
-<body>
+<body style="margin:150px 150px 0 150px">
 
 
 
@@ -31,6 +31,13 @@
     }
 
     <div class="table">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+                    { 
+                        <p style="text-align: center;">
+                            <a class="btn btn-primary" asp-page="Create">Create New</a>
+                        </p>
+
+                    }
         <table id="myTable">
             <thead>
                 <tr>
@@ -67,16 +74,6 @@
         </table>
         </div>
 
-
-
-        @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
-        {
-            <a asp-page="Create">Create New</a>
-
-        }
-
-
-
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.js"></script>
@@ -88,67 +85,3 @@
 
 
 
-@*<table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Flights[0].From)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Flights[0].To)
-                </th>
-                <th>
-                    Departure Date
-                </th>
-                <th>
-                    Arrival Date
-                </th>
-                <th>
-                    Class Type
-                </th>
-                 <th>
-                    Seats Left
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Flights[0].Price)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Flights)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.From)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.To)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DepartureDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ArrivalDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClassType)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SeatsLeft)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
-                    {
-                            <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
-                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                    }
-                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@

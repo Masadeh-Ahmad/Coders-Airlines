@@ -49,7 +49,6 @@ namespace Coders_Airlines.Pages.Apartments
         public async Task<IActionResult> OnPostCheck(int? id)
         {
             await OnGetAsync(id);
-            CarRental last = new CarRental();
             bool available = true;
 
             List<ApartmentRental> rentals = await _context.ApartmentRentals.Where(x => x.ApartmentID == id).ToListAsync();

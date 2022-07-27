@@ -19,12 +19,21 @@ namespace Coders_Airlines.Pages.Cars
         {
             _car = car;
         }
-
         public List<Car> Cars { get; set; }
-
+        [BindProperty]
+        public Filter Filter { get; set; }
         public async Task OnGetAsync()
         {
             Cars = await _car.GetCars();
         }
+        public async Task OnPostAsync()
+        {
+            Cars = await _car.GetCarsOnTime(Filter);
+        }
+    }
+    public class Filter
+    {
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
     }
 }
