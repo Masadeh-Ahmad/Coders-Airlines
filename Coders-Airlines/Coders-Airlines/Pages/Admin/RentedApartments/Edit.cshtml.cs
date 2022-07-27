@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Coders_Airlines.Pages.Admin.RentedApartments
 {
+    [Authorize(Roles = "administrator")]
     public class EditModel : PageModel
     {
         private readonly Coders_Airlines.Data.AirlinesDbContext _context;

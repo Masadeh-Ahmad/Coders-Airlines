@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Coders_Airlines.Data;
 using Coders_Airlines.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Coders_Airlines.Pages.Admin
 {
+    [Authorize(Roles = "administrator")]
     public class AdminFlightBookingListModel : PageModel
     {
         private readonly Coders_Airlines.Data.AirlinesDbContext _context;
