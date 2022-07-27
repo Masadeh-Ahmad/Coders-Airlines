@@ -14,14 +14,19 @@ namespace Coders_Airlines.Pages.Flights
     public class DetailsModel : PageModel
     {
         private readonly IFlight _flight;
+        private readonly ICar _car;
 
-        public DetailsModel(IFlight flight)
+        public List<Car> items { get; set; }
+
+        public DetailsModel(IFlight flight, ICar car)
         {
             _flight = flight;
+            _car = car;
         }
 
         public Flight Flight { get; set; }
-
+        
+        
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -30,7 +35,7 @@ namespace Coders_Airlines.Pages.Flights
             }
 
             Flight = await _flight.GetFlight(id);
-
+            items = await _car.RandomCar();
             if (Flight == null)
             {
                 return NotFound();

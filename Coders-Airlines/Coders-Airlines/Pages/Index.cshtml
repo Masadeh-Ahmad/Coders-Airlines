@@ -21,21 +21,20 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="~/css/landing.css" rel="stylesheet" />
     </head>
-    <body id="page-top">
+    <body class="bg-light" id="page-top">
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
                 <div class="masthead-subheading">Welcome To Our Website!</div>
-                <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#portfolio">Let's Rent!</a>
+                <div class="masthead-heading text-uppercase">Plan Your Next Vacation!</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#portfolio">Get Started!</a>
             </div>
         </header>
         <!-- Portfolio Grid-->
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Rentals</h2>
-                    <h3 class="section-subheading text-muted">at your favorite Agency</h3>
+                    <h2 class="section-heading text-uppercase">Bookings</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
@@ -45,13 +44,13 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="https://media.istockphoto.com/photos/passengers-commercial-airplane-flying-above-clouds-picture-id955952680?k=20&m=955952680&s=612x612&w=0&h=ySHtI28Vrvz4vj2q7T8ENJQakH_7wSHuhNLLiwr06EY=" alt="..." />
+                                <img style="width: 612px; height: 408px; border-top-left-radius: 10%; border-top-right-radius: 10%; " class="img-fluid" src="https://media.istockphoto.com/photos/passengers-commercial-airplane-flying-above-clouds-picture-id955952680?k=20&m=955952680&s=612x612&w=0&h=ySHtI28Vrvz4vj2q7T8ENJQakH_7wSHuhNLLiwr06EY=" alt="..." />
                             </a>
-                            <div class="portfolio-caption">
-                                <a asp-page="Flights/Index">
-                                <div class="portfolio-caption-heading">Flights</div>
+                            <div class="portfolio-caption" style="background-color:#ffc800">
+                                <a style="text-decoration: none; color: white" asp-page="Flights/Index">
+                                    <div class="portfolio-caption-heading">Flights</div>
                                 </a>
-                                @*<div class="portfolio-caption-subheading text-muted">Illustration</div>*@ 
+                                @*<div class="portfolio-caption-subheading text-muted">Illustration</div>*@
                             </div>
                         </div>
                     </div>
@@ -62,33 +61,32 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyPFCQ3Bd1hOnXXRVJDNdKr7izRI5q41kzxA&usqp=CAU" width="612" height="408" alt="..." />
+                                <img class="img-fluid" src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2019_13/2798361/190325-rental-cars-cs-229p.jpg" style="width: 612px; height: 408px; border-top-left-radius: 10%; border-top-right-radius: 10%; " alt="..." />
                             </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading"><a asp-page="Cars/Index">Cars</a></div>
+                            <div class="portfolio-caption" style="background-color:#ffc800">
+                                <div class="portfolio-caption-heading"><a style="text-decoration: none; color: white" asp-page="Cars/Index">Cars</a></div>
                                 @*<div class="portfolio-caption-subheading text-muted">Graphic Design</div>*@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="col-lg-4 col-sm-6 mb-4" >
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
                             <a asp-page="Apartments/Index" class="portfolio-link">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="data:image/jpeg;base64,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" width="612" height="408" alt="..." />
+                                <img style="width: 612px; height: 408px; border-top-left-radius: 10%; border-top-right-radius: 10%;" class="img-fluid" src="https://www.fau.edu/newsdesk/images/news/apt-for-rent.jpg" alt="..." />
                             </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading"><a asp-page="Apartments/Index">Apartments</a></div>
+                            <div class="portfolio-caption" style="background-color:#ffc800">
+                                <div class="portfolio-caption-heading"><a style="text-decoration:none; color:white" asp-page="Apartments/Index">Apartments</a></div>
                                 @*<div class="portfolio-caption-subheading text-muted">Identity</div>*@
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>   
-        <!-- About-->
+        </section>
         @*<section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
@@ -149,51 +147,51 @@
                     </li>
                 </ul>
             </div>
-        </section>
+        </section>*@
         <!-- Team-->
-        <section class="page-section bg-light" id="team">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
-                            <h4>Parveen Anand</h4>
-                            <p class="text-muted">Lead Designer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
-                            <h4>Diana Petersen</h4>
-                            <p class="text-muted">Lead Marketer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
-                            <h4>Larry Parker</h4>
-                            <p class="text-muted">Lead Developer</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+        <!--<section class="page-section bg-light" id="team">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                        <h4>Parveen Anand</h4>
+                        <p class="text-muted">Lead Designer</p>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                        <h4>Diana Petersen</h4>
+                        <p class="text-muted">Lead Marketer</p>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                        <h4>Larry Parker</h4>
+                        <p class="text-muted">Lead Developer</p>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
             </div>
-        </section>*@
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+            </div>
+        </div>
+    </section>-->
         @*<!-- Clients-->
         <div class="py-5">
             <div class="container">
@@ -214,11 +212,30 @@
             </div>
         </div>*@
         <!-- Contact-->
+        <div class="jumbotron jumbotron-fluid feature" id="feature-last" style="margin-bottom:50px">
+            <div class="container">
+                <div class="row justify-content-between text-center text-md-left">
+                    <div data-aos="fade-left" data-aos-duration="1000" data-aos-once="true" class="col-md-6 flex-md-last">
+                        <h2 class="font-weight-bold">Fast and Easy!</h2>
+                        <p class="my-4">
+                            Book your flights, cars and apartments with the best deals
+                            <br> all in one place!
+                        </p>
+                        <a asp-page="/aboutus" class="btn btn-primary btn-xl text-uppercase">Learn More</a>
+                    </div>
+                    <div data-aos="fade-right" data-aos-duration="1000" data-aos-once="true" class="col-md-6 align-self-center flex-md-first">
+                        <img style="height: 300px; width: 400px; border-radius: 10%;" src="https://lnt.ma/wp-content/uploads/2021/03/travel.jpg" alt="Safe and reliable" class="mx-auto d-block">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
                 <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
@@ -262,9 +279,6 @@
                     <div class="d-none" id="submitSuccessMessage">
                         <div class="text-center text-white mb-3">
                             <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                         </div>
                     </div>
                     <!-- Submit error message-->
@@ -277,8 +291,10 @@
                 </form>
             </div>
         </section>
-        
-       @* <!-- Portfolio Modals-->
+
+
+
+        @* <!-- Portfolio Modals-->
         <!-- Portfolio item 1 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">

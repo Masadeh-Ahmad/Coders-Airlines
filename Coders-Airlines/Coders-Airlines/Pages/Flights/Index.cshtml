@@ -12,6 +12,13 @@
 </head>
 <body>
 
+
+
+ 
+
+
+
+
     @{
         string[] TableHeaders = new string[] {"ID",
                         "Class Type"
@@ -43,39 +50,42 @@
                     {
                         foreach (var Data in Model.Flights)
                         {
-                                <tr onclick="window.location = './Flights/Details/?id=@Data.ID'" ; style="cursor: pointer;">
-                                    <td>@Data.ID</td>
-                                    <td>@Data.ClassType</td>
-                                    <td>@Data.From</td>
-                                    <td>@Data.To</td>
-                                    <td>@Data.DepartureDate</td>
-                                    <td>@Data.ArrivalDate</td>
-                                    <td>@Data.SeatsLeft</td>
-                                    <td>&#36;@Data.Price</td>
-                                </tr>
+                            <tr onclick="window.location = './Flights/Details/?id=@Data.ID'" ; style="cursor: pointer;">
+                                <td>@Data.ID</td>
+                                <td>@Data.ClassType</td>
+                                <td>@Data.From</td>
+                                <td>@Data.To</td>
+                                <td>@Data.DepartureDate</td>
+                                <td>@Data.ArrivalDate</td>
+                                <td>@Data.SeatsLeft</td>
+                                <td>&#36;@Data.Price</td>
+                            </tr>
                         }
                     }
                 }
             </tbody>
         </table>
-    </div>
+        </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+        @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+        {
+            <a asp-page="Create">Create New</a>
+
+        }
+
+
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
 </body>
 </html>
 
 
-<p>
-    @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
-    {
-        <a asp-page="Create">Create New</a>
-
-    }
-</p>
 
 
 @*<table class="table">
