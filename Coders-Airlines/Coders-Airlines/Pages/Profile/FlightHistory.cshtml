@@ -1,0 +1,78 @@
+﻿@page
+@model Coders_Airlines.Pages.Profile.FlightHistoryModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body style="margin:100px 100px 0 100px">
+
+    <h1 style="align-content:center; text-align:center; margin-bottom:50px">
+        Flight Booking History
+    </h1>
+    @{
+        ViewData["Title"] = "Display Data";
+        string[] TableHeaders = new string[]
+        {
+                        "Departure Date",
+                        "Arrival Date",
+                        "From",
+                        "To",
+                        "Num Of Bags",
+                        "Num Of Seats",
+                        "ClassType",
+                        "Total Price"
+                };
+    }
+
+    <div class="table">
+        <table id="myTable">
+            <thead>
+                <tr>
+                    @{
+                        foreach (var head in TableHeaders)
+                        {
+                            <th>
+                                @head
+                            </th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (var Data in Model.Booking)
+                        {
+                            <tr onclick="window.location = '../Flights/Details/?id=@Data.Flight.ID'" ; style="cursor: pointer;">
+                                <td>@Data.Flight.DepartureDate</td>
+                                <td>@Data.Flight.ArrivalDate</td>
+                                <td>@Data.Flight.From</td>
+                                <td>@Data.Flight.To</td>
+                                <td>@Data.NumOfBags</td>
+                                <td>@Data.NumOfSeats</td>
+                                <td>@Data.Flight.ClassType</td>
+
+                                <td>&#36;@System.Math.Round((Data.TotalPrice), 2)</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html>

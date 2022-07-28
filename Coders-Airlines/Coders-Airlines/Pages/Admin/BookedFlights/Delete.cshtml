@@ -1,0 +1,64 @@
+﻿@page
+@model Coders_Airlines.Pages.Admin.BookedFlights.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.NumOfSeats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.NumOfSeats)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.NumOfBags)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.NumOfBags)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.TotalPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.TotalPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.Flight)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.Flight.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.Flight.From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.Flight.From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.Flight.To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.Flight.To)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Booking.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.User.UserName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Booking.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./AdminFlightBookingList">Back to List</a>
+    </form>
+</div>

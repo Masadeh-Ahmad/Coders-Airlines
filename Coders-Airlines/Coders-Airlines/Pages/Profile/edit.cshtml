@@ -1,0 +1,88 @@
+﻿@page
+@model Coders_Airlines.Pages.Profile.editModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4 style="align-content:center; text-align:center">Update Your Profile</h4>
+
+<hr />
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="~/css/form.css" />
+</head>
+<body style="margin:100px 100px 0 100px">
+
+    <form class='card p-3 bg-light' method="post" style="margin: auto; width: 500px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="user.Id" />
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label asp-for="user.UserName" class="control-label">Username</label>
+                    <input asp-for="UserName" class="form-control" placeholder="@Model.user.UserName" />
+                    <span asp-validation-for="user.UserName" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="user.Email" class="control-label"></label>
+                    <input asp-for="Email" placeholder="@Model.user.Email" class="form-control" />
+                    <span asp-validation-for="user.Email" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+                <div class="col">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="user.PasswordHash" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label class="control-label">Phone number</label>
+                    <input asp-for="PhoneNumber" placeholder="@Model.user.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="user.PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <div style="display:grid; grid-template-columns: 50% 50%" class="row">
+
+                <div class="col">
+                    <label asp-for="user.Gender" class="control-label"></label>
+                    <input asp-for="Gender" placeholder="@Model.user.Gender" class="form-control" />
+                    <span asp-validation-for="user.Gender" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label class="control-label">Date Of Birth</label>
+                    <input asp-for="DateOfBirth" placeholder="@Model.user.DateOfBirth" class="form-control" />
+                    <span asp-validation-for="user.DateOfBirth" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+        <div>
+            <a asp-page="./Index">Back to List</a>
+        </div>
+    </form>
+
+ 
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+</body>
+</html>
+
+

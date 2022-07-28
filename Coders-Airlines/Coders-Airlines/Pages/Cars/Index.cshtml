@@ -1,0 +1,102 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Coders_Airlines.Pages.Cars.IndexModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.css" />
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body style="margin:150px 150px 0 150px">
+
+
+
+
+
+
+    @{
+        string[] TableHeaders = new string[] {
+                        "Car's Name"
+                        ,"Model's Year"
+                        ,"City"
+                        ,"Fuel Type"
+                        ,"Rental Cost"};
+    }
+    <div style="margin-bottom:50px">
+        <h1 style="text-align: center">Weclome To Cars Page!</h1>
+        <h3 style="text-align: center">Start Renting Cars!</h3>
+    </div>
+
+    <div class="table">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+        {
+            <p style="text-align: center;">
+                <a class="btn btn-primary" asp-page="Create">Create New</a>
+            </p>
+
+        }
+        <form style="margin:20px " method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">From</label>
+                <input asp-for="@Model.Filter.From" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">To</label>
+                <input asp-for="@Model.Filter.To" class="form-control" />
+
+            </div>
+            <input type="submit" value="Search for Availability" class="btn btn-primary" />
+        </form>
+
+        <div style="margin-top:50px">
+            <table id="myTable">
+
+                <thead>
+                    <tr>
+                        @{
+                            foreach (var head in TableHeaders)
+                            {
+                                <th>
+                                    @head
+                                </th>
+                            }
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (var Data in Model.Cars)
+                            {
+                                <tr onclick="window.location = '/Cars/Details/?id=@Data.ID'" ; style="cursor: pointer;">
+
+                                    <td>@Data.Name</td>
+                                    <td>@Data.ModelYear</td>
+                                    <td>@Data.City</td>
+                                    <td>@Data.FuelType</td>
+                                    <td>&#36;@Data.RentalCost</td>
+                                </tr>
+                            }
+                        }
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.23/b-1.6.5/fc-3.3.2/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.1/datatables.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html>

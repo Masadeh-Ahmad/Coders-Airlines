@@ -1,0 +1,52 @@
+﻿@page
+@model Coders_Airlines.Pages.Admin.RentedApartments.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ApartmentRental</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApartmentRental.From)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApartmentRental.From)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApartmentRental.To)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApartmentRental.To)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApartmentRental.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApartmentRental.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApartmentRental.Apartment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApartmentRental.Apartment.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApartmentRental.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApartmentRental.User.UserName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ApartmentRental.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./AdminApartmentRental">Back to List</a>
+    </form>
+</div>
