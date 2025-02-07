@@ -61,6 +61,7 @@ jobs:
         run: |
           echo "${{ secrets.AWS_SSH_KEY }}" > /tmp/aws_ssh_key.pem
           chmod 600 /tmp/aws_ssh_key.pem
+          cat /tmp/aws_ssh_key.pem
           
       - name: Add EC2 to known hosts
         run: |
