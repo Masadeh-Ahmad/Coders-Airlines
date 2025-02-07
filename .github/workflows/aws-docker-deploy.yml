@@ -61,7 +61,6 @@ jobs:
         run: |
           echo "${{ secrets.AWS_SSH_KEY }}" > /tmp/aws_ssh_key.pem
           chmod 600 /tmp/aws_ssh_key.pem
-          cat /tmp/aws_ssh_key.pem
           
       - name: Add EC2 to known hosts
         run: |
@@ -76,7 +75,7 @@ jobs:
       # Step 3: SSH into EC2 and deploy
       - name: Deploy to EC2
         run: |
-          ssh -i ${{ secrets.AWS_SSH_KEY }} ${{ secrets.AWS_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          ssh -i /tmp/aws_ssh_key.pem ${{ secrets.AWS_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           docker-compose -f /home/${{ secrets.AWS_USER }}/docker-compose.yml down
           docker-compose -f /home/${{ secrets.AWS_USER }}/docker-compose.yml up -d --build
           EOF

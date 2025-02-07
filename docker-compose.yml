@@ -1,6 +1,6 @@
 ﻿services:
   app:
-    image: ${{ secrets.DOCKER_USERNAME }}/coders-online:latest
+    image: masadehahmad/coders-online:latest
     container_name: dotnet_app
     ports:
       - "80:80" # Map port 80 on the EC2 instance to port 80 in the container
