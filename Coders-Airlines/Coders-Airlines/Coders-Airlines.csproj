@@ -50,6 +50,7 @@
     <Content Remove="C:\Users\laith alamat\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.js.map" />
     <Content Remove="C:\Users\laith alamat\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js" />
     <Content Remove="C:\Users\laith alamat\.nuget\packages\bootstrap\5.1.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" />
+    <Content Include=".github\workflows\aws-docker-deploy.yml" />
   </ItemGroup>
 
   <ItemGroup>
