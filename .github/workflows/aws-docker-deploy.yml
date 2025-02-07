@@ -30,7 +30,7 @@ jobs:
         run: ls -R
       # Step 4: Build the app
       - name: Build Application
-        run: dotnet publish ./Coders-Airlines/Coders-Airlines.csproj -c Release -o ./publish
+        run: dotnet publish ./Coders-Airlines/Coders-Airlines.sln -c Release -o ./publish
 
       # Step 5: Set up Docker
       - name: Login to DockerHub (Optional)
