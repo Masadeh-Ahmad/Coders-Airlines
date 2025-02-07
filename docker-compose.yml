@@ -3,6 +3,6 @@
     image: masadehahmad/coders-online:latest
     container_name: dotnet_app
     ports:
-      - "80:80" # Map port 80 on the EC2 instance to port 80 in the container
+      - "8080:8080" 
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
