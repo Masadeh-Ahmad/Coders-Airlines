@@ -25,9 +25,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0  # Use .NET 6.0 or .NET 7.0
-          
-      - name: List files in current directory
-        run: ls -R
+
       # Step 4: Build the app
       - name: Build Application
         run: dotnet publish ./Coders-Airlines/Coders-Airlines.sln -c Release -o ./publish
@@ -62,7 +60,7 @@ jobs:
       # Step 2: Copy files to EC2 using SCP
       - name: Copy Docker Compose to EC2
         run: |
-          scp -i ${{ secrets.AWS_SSH_KEY }} ./docker-compose.yml ${{ secrets.AWS_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.AWS_USER }}/docker-compose.yml
+          scp -i ${{ secrets.AWS_SSH_KEY }} ./docker-compose.yml ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }}:/home/${{ secrets.AWS_USER }}/docker-compose.yml
 
       # Step 3: SSH into EC2 and deploy
       - name: Deploy to EC2
