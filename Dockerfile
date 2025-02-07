@@ -1,11 +1,11 @@
 ﻿# Use the official .NET SDK image for building the app
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0  AS base
 WORKDIR /app
 EXPOSE 8080
 
 
 # Use the official .NET SDK image for building the app
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0  AS build
 WORKDIR /src
 COPY ["Coders-Airlines", "Coders-Airlines/"]
 RUN dotnet restore "Coders-Airlines/Coders-Airlines.sln" 
