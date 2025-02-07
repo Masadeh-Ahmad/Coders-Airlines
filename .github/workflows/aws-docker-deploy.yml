@@ -28,7 +28,7 @@ jobs:
 
       # Step 4: Build the app
       - name: Build Application
-        run: dotnet publish -c Release -o ./publish
+        run: dotnet publish ./Coders-Airlines.sln -c Release -o ./publish
 
       # Step 5: Set up Docker
       - name: Login to DockerHub (Optional)
