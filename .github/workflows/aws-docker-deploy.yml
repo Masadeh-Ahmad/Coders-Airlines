@@ -25,7 +25,9 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0  # Use .NET 6.0 or .NET 7.0
-
+          
+      - name: List files in current directory
+        run: ls -R
       # Step 4: Build the app
       - name: Build Application
         run: dotnet publish ./Coders-Airlines/Coders-Airlines.csproj -c Release -o ./publish
