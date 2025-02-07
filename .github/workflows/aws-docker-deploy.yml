@@ -61,9 +61,13 @@ jobs:
         run: |
           echo "${{ secrets.AWS_SSH_KEY }}" > /tmp/aws_ssh_key.pem
           chmod 600 /tmp/aws_ssh_key.pem
-            
-            
-      # Step 2: Copy files to EC2 using SCP
+          
+      - name: Add EC2 to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.AWS_HOST }} >> ~/.ssh/known_hosts
+        
+        # Step 2: Copy files to EC2 using SCP
       - name: Copy Docker Compose to EC2
         run: |
           scp -i /tmp/aws_ssh_key.pem ./docker-compose.yml ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }}:/home/${{ secrets.AWS_USER }}/docker-compose.yml
