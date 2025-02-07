@@ -75,7 +75,7 @@ jobs:
       # Step 3: SSH into EC2 and deploy
       - name: Deploy to EC2
         run: |
-          ssh -i /tmp/aws_ssh_key.pem ${{ secrets.AWS_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          ssh -i /tmp/aws_ssh_key.pem ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
           docker-compose -f /home/${{ secrets.AWS_USER }}/docker-compose.yml down
           docker-compose -f /home/${{ secrets.AWS_USER }}/docker-compose.yml up -d --build
           EOF
