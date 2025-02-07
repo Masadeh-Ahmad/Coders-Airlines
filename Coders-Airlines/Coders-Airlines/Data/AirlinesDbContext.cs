@@ -34,7 +34,7 @@ namespace Coders_Airlines.Data
         {
             base.OnModelCreating(modelBuilder);
             List<Countries> countryList = new List<Countries>();
-            using (StreamReader r = new StreamReader(".\\Assets\\Countries.json"))
+            using (StreamReader r = new StreamReader(Path.Combine("Assets", "Countries.json")))
             {
                 string json = r.ReadToEnd();
                 countryList = JsonConvert.DeserializeObject<List<Countries>>(json);
