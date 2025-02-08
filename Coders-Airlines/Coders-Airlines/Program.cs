@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using Microsoft.Extensions.Configuration;
 
 namespace Coders_Airlines
 {
@@ -31,9 +32,13 @@ namespace Coders_Airlines
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureAppConfiguration((context, config) =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    var builtConfig = config.Build();
+
+                    // Load environment variables from Docker or system environment
+                    config.AddEnvironmentVariables();
+                })
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }
