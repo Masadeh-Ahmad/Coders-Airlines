@@ -66,6 +66,15 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.AWS_HOST }} >> ~/.ssh/known_hosts
+          
+      - name: Replace placeholders in docker-compose
+        run: |
+          sed -e "s|{{DB_SERVER}}|${{ secrets.DB_SERVER }}|g" \
+           -e "s|{{DB_USER}}|${{ secrets.DB_USER }}|g" \
+           -e "s|{{DB_PASSWORD}}|${{ secrets.DB_PASSWORD }}|g" \
+           -e "s|{{DB_NAME}}|${{ secrets.DB_NAME }}|g" \
+           -e "s|{{DOCKER_USERNAME}}|${{ secrets.DOCKER_USERNAME }}|g" \
+           docker-compose.template.yml > docker-compose.yml
         
         # Step 2: Copy files to EC2 using SCP
       - name: Copy Docker Compose to EC2
