@@ -86,6 +86,7 @@ jobs:
         run: |
           ssh -i /tmp/aws_ssh_key.pem ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
           docker compose -f /home/${{ secrets.AWS_USER }}/docker-compose.yml down
+          docker image rm -f ${{ secrets.DOCKER_USERNAME }}/coders-online:latest
           docker compose -f /home/${{ secrets.AWS_USER }}/docker-compose.yml up -d --build
           EOF
           
