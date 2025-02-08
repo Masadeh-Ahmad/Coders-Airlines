@@ -49,7 +49,6 @@ namespace Coders_Airlines
             {
                 // Our DATABASE_URL from js days
                 string connectionString = Configuration.GetConnectionString("DefaultConnection");
-                Console.WriteLine(connectionString);
                 options.UseSqlServer(connectionString);
             });
             services.AddTransient<IEmail, EmailService>();
