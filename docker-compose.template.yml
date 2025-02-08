@@ -7,7 +7,4 @@
       - "44358:44358" 
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - DB_SERVER={{DB_SERVER}}
-      - DB_USER={{DB_USER}}
-      - DB_PASSWORD={{DB_PASSWORD}}
-      - DB_NAME={{DB_NAME}}
+      - ConnectionStrings__DefaultConnection = Server={DB_SERVER};Database={DB_NAME};User Id={DB_USER};Password={DB_PASSWORD};
