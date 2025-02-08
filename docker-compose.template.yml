@@ -3,7 +3,8 @@
     image: {{DOCKER_USERNAME}}/coders-online:latest
     container_name: dotnet_app
     ports:
-      - "8080:8080" 
+      - "5000:5000" 
+      - "44358:44358" 
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - DB_SERVER={{DB_SERVER}}

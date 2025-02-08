@@ -1,7 +1,8 @@
 ﻿# Use the official .NET runtime for running the app
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 5000
+EXPOSE 44358
 
 # Set the default environment to Production
 ENV ASPNETCORE_ENVIRONMENT=Production
